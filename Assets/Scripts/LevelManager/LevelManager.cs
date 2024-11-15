@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
-using Mono.Cecil.Cil;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -87,6 +87,11 @@ public class LevelManager : MonoBehaviour
             currentPlayers.Remove(player);
             Destroy(player.gameObject, 2f);
         }
+    }
+
+    public void LoadScene(string scene)
+    {
+        SceneManager.LoadScene(scene);
     }
 
 
