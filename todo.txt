@@ -1,0 +1,5 @@
+Charcontroller (Léonard)
+SceneManager et LevelManager (Baptiste)
+Map (Jésus, Lais)
+De piegeet les items interactibles avec une torche (Smebody)
+Système de torche (Alex)
