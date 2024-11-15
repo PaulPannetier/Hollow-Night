@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7337283893686204796}
   - component: {fileID: 7179981723285435341}
+  - component: {fileID: 9090398010755755988}
+  - component: {fileID: 2357763605954445173}
+  - component: {fileID: 3904826450736309284}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -55,3 +58,102 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &9090398010755755988
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7030187534923222893}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &2357763605954445173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7030187534923222893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4a8e51e742178d4c82dcc566c6b5061, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upInput:
+    keysKeyboard: 7a000000
+    keyGamepad1: 00000000
+    keyGamepad2: 
+    keyGamepad3: 
+    keyGamepad4: 
+    controllerType: 0
+  downInput:
+    keysKeyboard: 73000000
+    keyGamepad1: 
+    keyGamepad2: 
+    keyGamepad3: 
+    keyGamepad4: 
+    controllerType: 0
+  rightInput:
+    keysKeyboard: 64000000
+    keyGamepad1: 
+    keyGamepad2: 
+    keyGamepad3: 
+    keyGamepad4: 
+    controllerType: 0
+  leftInput:
+    keysKeyboard: 71000000
+    keyGamepad1: 
+    keyGamepad2: 
+    keyGamepad3: 
+    keyGamepad4: 
+    controllerType: 0
+  sprintInput:
+    keysKeyboard: 2f010000
+    keyGamepad1: 54010000
+    keyGamepad2: 5e010000
+    keyGamepad3: 68010000
+    keyGamepad4: 72010000
+    controllerType: 0
+  torchInput:
+    keysKeyboard: 43010000
+    keyGamepad1: 56010000
+    keyGamepad2: 60010000
+    keyGamepad3: 6a010000
+    keyGamepad4: 74010000
+    controllerType: 0
+  x: 0
+  y: 0
+  rawX: 0
+  rawY: 0
+--- !u!114 &3904826450736309284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7030187534923222893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e38260a8434dc4999a5bbc2d0d8e62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkSpeed: 0
+  sprintSpeed: 0
