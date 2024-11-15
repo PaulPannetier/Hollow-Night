@@ -1,4 +1,7 @@
+using System.Collections.Generic;
 using System.Linq;
+using Mono.Cecil.Cil;
+using TMPro;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -8,6 +11,10 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private Transform endLevelPanel;
 
+    [SerializeField] private TextMeshProUGUI winnerNameText;
+
+    [SerializeField] private List<Transform> currentPlayers = new List<Transform>();
+    private Transform lastPlayer;
 
     private bool Error => players.Count() > spawnPoints.Count();
 
@@ -23,31 +30,38 @@ public class LevelManager : MonoBehaviour
     void Update()
     {
         if (CheckEndGame())
+        {
             EndGame();
+        }
 
+    }
+
+
+    private void InitialiseGame()
+    {
+        Time.timeScale = 1;
+        lastPlayer = null;
+        endLevelPanel.gameObject.SetActive(false);
+
+        InstantiatePlayers();
     }
 
     private void InstantiatePlayers()
     {
         for (int i = 0; i < players.Count(); i++)
         {
-            Instantiate(players[i], spawnPoints[i].position, spawnPoints[i].rotation, transform);
+            GameObject newPlayer = Instantiate(players[i], spawnPoints[i].position, spawnPoints[i].rotation, transform);
+            currentPlayers.Add(newPlayer.transform);
         }
     }
-
-    private void InitialiseGame()
-    {
-        Time.timeScale = 1;
-        endLevelPanel.gameObject.SetActive(false);
-
-        InstantiatePlayers();
-    }
-
     private bool CheckEndGame()
     {
-        if (players.Count() > 0)
+        if (currentPlayers.Count() > 1)
+        {
             return false;
+        }
 
+        lastPlayer = currentPlayers[0];
         return true;
     }
 
@@ -56,7 +70,23 @@ public class LevelManager : MonoBehaviour
         Time.timeScale = 0;
 
         if (endLevelPanel != null)
+        {
             endLevelPanel.gameObject.SetActive(true);
+
+            if (lastPlayer != null && winnerNameText != null)
+                winnerNameText.text = lastPlayer.name;
+
+
+        }
+    }
+
+    public void DestroyPlayer(Transform player)
+    {
+        if (currentPlayers.Contains(player))
+        {
+            currentPlayers.Remove(player);
+            Destroy(player.gameObject, 2f);
+        }
     }
 
 
