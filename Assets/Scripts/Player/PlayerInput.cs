@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
+    [SerializeField] private bool useGamepad;
+
     [SerializeField] private InputManager.GeneralInput upInput;
     [SerializeField] private InputManager.GeneralInput downInput;
     [SerializeField] private InputManager.GeneralInput rightInput;
@@ -9,8 +11,8 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private InputManager.GeneralInput sprintInput;
     [SerializeField] private InputManager.GeneralInput torchInput;
 
-    private ControllerType _controllerType;
-    private ControllerType controllerType
+    private ControllerType _controllerType = ControllerType.Keyboard;
+    public ControllerType controllerType
     {
         get => _controllerType;
         set
@@ -35,9 +37,14 @@ public class PlayerInput : MonoBehaviour
     [HideInInspector] public float x, y;
     [HideInInspector] public int rawX, rawY;
 
+    private void Start()
+    {
+        this.controllerType = useGamepad ? ControllerType.Gamepad1 : ControllerType.Keyboard;
+    }
+
     private void Update()
     {
-        if(controllerType == ControllerType.Keyboard)
+        if(controllerType == ControllerType.Keyboard && !useGamepad)
         {
             if (rightInput.IsPressed())
             {
@@ -60,8 +67,8 @@ public class PlayerInput : MonoBehaviour
         else
         {
             Vector2 tmbStickPosition = InputManager.GetGamepadStickPosition(controllerType, GamepadStick.left).normalized;
-            x = Mathf.Clamp01(tmbStickPosition.x);
-            y = Mathf.Clamp01(tmbStickPosition.y);
+            x = tmbStickPosition.x;
+            y = tmbStickPosition.y;
         }
 
         rawX = Mathf.Abs(x) >= 0.1f ? (x > 0f ? 1 : - 1) : 0;
