@@ -360,7 +360,12 @@ MonoBehaviour:
   - {fileID: 930283213}
   endLevelPanel: {fileID: 1098466598}
   winnerNameText: {fileID: 1242029206}
-  currentPlayers: []
+  dayLight: {fileID: 76298562}
+  minNextDay: 1
+  maxNextDay: 2
+  firstDayDuration: 2
+  dayDuration: 0.5
+  lightSpeedVariation: 5
 --- !u!4 &455795983
 Transform:
   m_ObjectHideFlags: 0

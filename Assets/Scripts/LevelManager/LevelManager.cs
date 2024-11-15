@@ -1,6 +1,9 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -23,7 +26,15 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private float minNextDay;
     [SerializeField] private float maxNextDay;
 
+    [SerializeField] private float firstDayDuration = 5f;
+    [SerializeField] private float dayDuration = 0.5f;
+    [SerializeField] private float lightSpeedVariation = 5;
+
     private float lightTimer;
+    private float targetLightIntensity = 1;
+
+    private bool isFirstDay;
+
 
     private bool Error => players.Count() > spawnPoints.Count();
 
@@ -54,6 +65,7 @@ public class LevelManager : MonoBehaviour
         endLevelPanel.gameObject.SetActive(false);
 
         InstantiatePlayers();
+        SetFirstDay();
     }
 
     private void InstantiatePlayers()
@@ -112,14 +124,43 @@ public class LevelManager : MonoBehaviour
     #region Light
     private void UpdateLight()
     {
-        lightTimer += Time.deltaTime;
+        if (dayLight == null)
+        {
+            Debug.Log("Pas de lumiere dans le levelManager");
+            return;
+        }
 
+
+        lightTimer -= Time.deltaTime;
+
+        if (lightTimer <= 0 && !isFirstDay)
+        {
+            StartCoroutine(SetDay(dayDuration));
+        }
+
+        dayLight.intensity = Mathf.Lerp(dayLight.intensity, targetLightIntensity, Time.deltaTime * lightSpeedVariation);
 
     }
 
-    private void SetDay()
+    private void SetFirstDay()
     {
+        isFirstDay = true;
+        StartCoroutine(SetDay(firstDayDuration));
+    }
 
+    private IEnumerator SetDay(float dayDuration)
+    {
+        targetLightIntensity = 1;
+        yield return new WaitForSeconds(dayDuration);
+        targetLightIntensity = 0;
+        ResetLightTimer();
+    }
+
+
+    private void ResetLightTimer()
+    {
+        isFirstDay = false;
+        lightTimer = Random.Rand(minNextDay, maxNextDay);
     }
 
     #endregion
