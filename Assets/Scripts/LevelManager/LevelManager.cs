@@ -29,6 +29,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private float firstDayDuration = 5f;
     [SerializeField] private float dayDuration = 0.5f;
     [SerializeField] private float lightSpeedVariation = 5;
+    [SerializeField] private float dayIntensity = 1;
+    [SerializeField] private float nightIntensity = -1;
 
     private float lightTimer;
     private float targetLightIntensity = 1;
@@ -150,9 +152,9 @@ public class LevelManager : MonoBehaviour
 
     private IEnumerator SetDay(float dayDuration)
     {
-        targetLightIntensity = 1;
+        targetLightIntensity = dayIntensity;
         yield return new WaitForSeconds(dayDuration);
-        targetLightIntensity = 0;
+        targetLightIntensity = nightIntensity;
         ResetLightTimer();
     }
 
