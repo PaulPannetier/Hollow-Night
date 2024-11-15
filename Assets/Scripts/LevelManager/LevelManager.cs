@@ -53,8 +53,10 @@ public class LevelManager : MonoBehaviour
 
     private void EndGame()
     {
-        Time.timeScale = 0;  
-        endLevelUI.gameObject.SetActive(true);
+        Time.timeScale = 0;
+
+        if (endLevelUI != null)
+            endLevelUI.gameObject.SetActive(true);
     }
 
 
