@@ -13,7 +13,7 @@ public class LevelManager : MonoBehaviour
     public GameObject[] players;
 
     [SerializeField] private Transform[] spawnPoints;
-     [SerializeField] private List<Transform> currentPlayers = new List<Transform>();
+    [SerializeField] private List<Transform> currentPlayers = new List<Transform>();
     private Transform lastPlayer;
     private ScoreManager scoreManager;
 
@@ -67,7 +67,7 @@ public class LevelManager : MonoBehaviour
         Time.timeScale = 1;
         lastPlayer = null;
         endLevelPanel.gameObject.SetActive(false);
-        
+
         scoreManager = FindAnyObjectByType<ScoreManager>();
         InstantiatePlayers();
         SetFirstDay();
@@ -79,6 +79,7 @@ public class LevelManager : MonoBehaviour
         {
             GameObject newPlayer = Instantiate(players[i], spawnPoints[i].position, spawnPoints[i].rotation, transform);
             currentPlayers.Add(newPlayer.transform);
+            newPlayer.GetComponent<PlayerInput>().controllerType = (ControllerType)i;
 
         }
     }
