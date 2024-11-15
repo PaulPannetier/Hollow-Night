@@ -13,7 +13,7 @@ public class LevelManager : MonoBehaviour
     public GameObject[] players;
 
     [SerializeField] private Transform[] spawnPoints;
-    private List<Transform> currentPlayers = new List<Transform>();
+     [SerializeField] private List<Transform> currentPlayers = new List<Transform>();
     private Transform lastPlayer;
     private ScoreManager scoreManager;
 
