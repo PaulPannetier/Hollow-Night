@@ -6,15 +6,24 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    [Header("Player")]
     public GameObject[] players;
 
     [SerializeField] private Transform[] spawnPoints;
-    [SerializeField] private Transform endLevelPanel;
+    private List<Transform> currentPlayers = new List<Transform>();
+    private Transform lastPlayer;
 
+    [Header("EndLevelUI")]
+    [SerializeField] private Transform endLevelPanel;
     [SerializeField] private TextMeshProUGUI winnerNameText;
 
-    [SerializeField] private List<Transform> currentPlayers = new List<Transform>();
-    private Transform lastPlayer;
+
+    [Header("Lumiere")]
+    [SerializeField] private Light dayLight;
+    [SerializeField] private float minNextDay;
+    [SerializeField] private float maxNextDay;
+
+    private float lightTimer;
 
     private bool Error => players.Count() > spawnPoints.Count();
 
@@ -34,9 +43,10 @@ public class LevelManager : MonoBehaviour
             EndGame();
         }
 
+        UpdateLight();
     }
 
-
+    #region Initialise Game
     private void InitialiseGame()
     {
         Time.timeScale = 1;
@@ -54,6 +64,10 @@ public class LevelManager : MonoBehaviour
             currentPlayers.Add(newPlayer.transform);
         }
     }
+
+    #endregion
+
+    #region EndGame Region
     private bool CheckEndGame()
     {
         if (currentPlayers.Count() > 1)
@@ -79,6 +93,7 @@ public class LevelManager : MonoBehaviour
 
         }
     }
+    #endregion
 
     public void DestroyPlayer(Transform player)
     {
@@ -94,5 +109,19 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene(scene);
     }
 
+    #region Light
+    private void UpdateLight()
+    {
+        lightTimer += Time.deltaTime;
+
+
+    }
+
+    private void SetDay()
+    {
+
+    }
+
+    #endregion
 
 }
