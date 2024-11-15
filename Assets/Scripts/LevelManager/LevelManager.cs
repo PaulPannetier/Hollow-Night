@@ -6,7 +6,7 @@ public class LevelManager : MonoBehaviour
     public GameObject[] players;
 
     [SerializeField] private Transform[] spawnPoints;
-    [SerializeField] private Transform endLevelUI;
+    [SerializeField] private Transform endLevelPanel;
 
 
     private bool Error => players.Count() > spawnPoints.Count();
@@ -38,7 +38,7 @@ public class LevelManager : MonoBehaviour
     private void InitialiseGame()
     {
         Time.timeScale = 1;
-        endLevelUI.gameObject.SetActive(false);
+        endLevelPanel.gameObject.SetActive(false);
 
         InstantiatePlayers();
     }
@@ -55,8 +55,8 @@ public class LevelManager : MonoBehaviour
     {
         Time.timeScale = 0;
 
-        if (endLevelUI != null)
-            endLevelUI.gameObject.SetActive(true);
+        if (endLevelPanel != null)
+            endLevelPanel.gameObject.SetActive(true);
     }
 
 
