@@ -22,6 +22,7 @@ public class Mine : MonoBehaviour
         StartCoroutine(ResetBoom());
         GameObject a = Instantiate(boomFx, boomPoint.position, boomPoint.rotation, transform);
         Destroy(a, 2f);
+        AudioManager.instance.PlaySound("MineExplosion", 1f);
     }
 
     private IEnumerator ResetBoom()

@@ -37,6 +37,9 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private float dayIntensity = 1;
     [SerializeField] private float nightIntensity = -1;
 
+    [Header("Sound")]
+    [SerializeField] private string musicName;
+
     private float lightTimer;
     private float targetLightIntensity = 1;
 
@@ -63,6 +66,9 @@ public class LevelManager : MonoBehaviour
             Debug.LogWarning("pas assez de spawnPoints pour les joueurs");
 
         InitialiseLevel();
+
+        AudioManager.instance.StopAllSound();
+        AudioManager.instance.PlaySound(musicName, 1f);
     }
 
     void Update()
