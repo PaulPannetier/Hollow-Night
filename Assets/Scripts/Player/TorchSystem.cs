@@ -7,7 +7,6 @@ public class TorchSystem : MonoBehaviour
     private bool drawGizmos = true;
 #endif
 
-
     private PlayerInput playerInput;
     private PlayerData playerData;
     private bool isNight => LevelManager.instance.isNight;
@@ -65,12 +64,14 @@ public class TorchSystem : MonoBehaviour
                 {
                     if (!found[i])
                     {
+                        enemies[i].enemiGO.GetComponent<PlayerEvent>().OnPlayerEndLightUp(gameObject);
                         enemies.RemoveAt(i);
                         continue;
                     }
 
                     if (Time.time - enemies[i].firtsTimeTouch > durationToKill)
                     {
+                        enemies[i].enemiGO.GetComponent<PlayerEvent>().OnPlayerEndLightUp(gameObject);
                         PlayerData enemiData = enemies[i].enemiGO.GetComponent<PlayerData>();
                         EventManager.instance.OnPlayerDie(enemiData, playerData);
                         enemies.RemoveAt(i);
@@ -82,6 +83,7 @@ public class TorchSystem : MonoBehaviour
                     if (!colsAlreadyTouch[i])
                     {
                         enemies.Add(new EnemiData(Time.time, cols[i].gameObject));
+                        cols[i].GetComponent<PlayerEvent>().OnPlayerLightUp(gameObject);
                     }
                 }
             }

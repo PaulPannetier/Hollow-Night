@@ -14,6 +14,8 @@ public class CharacterController : MonoBehaviour
     private float currentAngle;
     private bool isGrounded => groundRaycast.collider != null;
     private float lastTimeSpawnSprintFX;
+    private int lightUpCounter;
+    private bool isLightUp => lightUpCounter > 0;
 
 #if UNITY_EDITOR
     [SerializeField] private bool drawGizmos;
@@ -28,6 +30,8 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private float walkDecelerationSpeedLerp;
     [SerializeField] private float sprintSpeed;
     [SerializeField] private float sprintSpeedLerp;
+    [SerializeField] private float walkSpeedWhenLightUp;
+    [SerializeField] private float walkSpeedLerpWhenLightUp;
     [SerializeField, Range(0f, 1f)] private float walkInitSpeed;
     [SerializeField] private float rotationSpeed;
     [SerializeField, Range(0f, 180f)] private float maxAngleTurn;
@@ -125,6 +129,7 @@ public class CharacterController : MonoBehaviour
         float slopePercent = Mathf.Abs(slopeAngle) / maxSlopeAngle;
         float speedCoeff = slopeAngle > 0f ? slopeUpSpeedMultiplier.Evaluate(slopePercent) : slopeDownSpeedMultiplier.Evaluate(slopePercent);
         float targetSpeed = (playerInput.isSprintPressed ? sprintSpeed : walkSpeed) * speedCoeff;
+        targetSpeed = isLightUp ? walkSpeedWhenLightUp : targetSpeed;
 
         if (playerInput.rawX == 0 && playerInput.rawY == 0)
         {
@@ -139,6 +144,7 @@ public class CharacterController : MonoBehaviour
 
         float delta = (playerInput.rawX == 0 && playerInput.rawY == 0) ? walkDecelerationSpeedLerp : 
             (playerInput.isSprintPressed ? sprintSpeedLerp : walkSpeedLerp);
+        delta = isLightUp ? walkSpeedLerpWhenLightUp : delta;
         newSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed * input.magnitude, delta * Time.fixedDeltaTime);
 
         Vector2 speed2D = Useful.Vector2FromAngle((newAngle + 90f) * Mathf.Deg2Rad, newSpeed);
@@ -169,6 +175,20 @@ public class CharacterController : MonoBehaviour
         velocity = new Vector3(Mathf.MoveTowards(velocity.x, 0f, fallDecelerationSpeedLerp * Time.fixedDeltaTime),
             Mathf.MoveTowards(velocity.y, -fallSpeed, fallSpeedLerp * Time.fixedDeltaTime),
             Mathf.MoveTowards(velocity.z, 0f, fallDecelerationSpeedLerp * Time.fixedDeltaTime));
+    }
+
+    #endregion
+
+    #region Light
+
+    public void OnLightUp()
+    {
+        lightUpCounter++;
+    }
+
+    public void OnEndLightUp()
+    {
+        lightUpCounter--;
     }
 
     #endregion
