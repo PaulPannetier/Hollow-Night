@@ -1,10 +1,10 @@
-using UnityEditor.Rendering;
 using UnityEngine;
 
 [RequireComponent (typeof(Rigidbody))]
 public class CharacterController : MonoBehaviour
 {
     private Rigidbody rb;
+    private CapsuleCollider capsuleCollider;
     private PlayerInput playerInput;
     private Vector3 velocity;
     private LayerMask mapsMask;
@@ -19,7 +19,7 @@ public class CharacterController : MonoBehaviour
 #endif
 
     [Header("Detection")]
-    [SerializeField] private float groundRaycastLength;
+    [SerializeField] private float groundCastLength;
 
     [Header("Walk")]
     [SerializeField] private float walkSpeed;
@@ -43,6 +43,7 @@ public class CharacterController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
+        capsuleCollider = GetComponent<CapsuleCollider>();
         mapsMask = LayerMask.GetMask("Map");
         this.transform = base.transform;
     }
@@ -69,7 +70,8 @@ public class CharacterController : MonoBehaviour
     {
         currentAngle = Vector2.SignedAngle(Vector2.right, new Vector2(velocity.x, velocity.z));
 
-        Physics.Raycast(transform.position, Vector3.down, out groundRaycast, groundRaycastLength, mapsMask);
+        //Physics.CapsuleCast(,
+        Physics.Raycast(transform.position, Vector3.down, out groundRaycast, groundCastLength, mapsMask);
 
         if (groundRaycast.collider != null)
         {
@@ -155,14 +157,16 @@ public class CharacterController : MonoBehaviour
             return;
 
         this.transform = base.transform;
+        capsuleCollider = GetComponent<CapsuleCollider>();
 
         Gizmos.color = Color.green;
-        Gizmos.DrawLine(transform.position, transform.position + Vector3.down * groundRaycastLength);
+        Gizmos.DrawLine(transform.position, transform.position + Vector3.down * (groundCastLength + capsuleCollider.height));
     }
 
     private void OnValidate()
     {
         this.transform = base.transform;
+        capsuleCollider = GetComponent<CapsuleCollider>();
         walkSpeed = Mathf.Max(walkSpeed, 0f);
         sprintSpeed = Mathf.Max(sprintSpeed, 0f);
         walkSpeedLerp = Mathf.Max(walkSpeedLerp, 0f);
