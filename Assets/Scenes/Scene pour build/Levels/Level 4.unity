@@ -752,6 +752,18 @@ PrefabInstance:
       propertyPath: winnerNameText
       value: 
       objectReference: {fileID: 647475150}
+    - target: {fileID: 5228246245017261111, guid: 5ab09e708ed324642a8b9583d0a7ddec, type: 3}
+      propertyPath: 'players.Array.data[1]'
+      value: 
+      objectReference: {fileID: 7030187534923222893, guid: 961e9eab56b061643a22b6ecf1c7006e, type: 3}
+    - target: {fileID: 5228246245017261111, guid: 5ab09e708ed324642a8b9583d0a7ddec, type: 3}
+      propertyPath: 'players.Array.data[2]'
+      value: 
+      objectReference: {fileID: 7030187534923222893, guid: 672f92109fb3f0a4d8b8719855d8904f, type: 3}
+    - target: {fileID: 5228246245017261111, guid: 5ab09e708ed324642a8b9583d0a7ddec, type: 3}
+      propertyPath: 'players.Array.data[3]'
+      value: 
+      objectReference: {fileID: 7030187534923222893, guid: 4de48dee6b2384943aff5df1362ca7d8, type: 3}
     - target: {fileID: 5404270519714919222, guid: 5ab09e708ed324642a8b9583d0a7ddec, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
