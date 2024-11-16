@@ -793,6 +793,18 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     soundEffect: 1
+  - name: Level4
+    audioClip: {fileID: 8300000, guid: 5b35c2845b9e25e42939e2d875522a27, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    soundEffect: 1
+  - name: Level5
+    audioClip: {fileID: 8300000, guid: 58db252a37cdb374eb75490b63807bf1, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    soundEffect: 1
   musicSourcePrefab: {fileID: 8283382841306009348, guid: 77bcad56c5ea64f41af30bcd213ddce1, type: 3}
   soundEffectSourcePrefab: {fileID: 8283382841306009348, guid: 9b33cb5ededfb304ba0618941ec6513c, type: 3}
 --- !u!81 &508056028
