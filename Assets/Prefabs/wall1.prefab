@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2298243084162557442}
   - component: {fileID: 2285885528563682286}
   m_Layer: 0
-  m_Name: Wall_1
+  m_Name: wall1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102,10 +102,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5482117286361355716, guid: a505163f5c342a548897854f574e67ff, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5482117286361355716, guid: a505163f5c342a548897854f574e67ff, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6209e65906b7d3b45ae8ea4784695500, type: 2}
     - target: {fileID: 919132149155446097, guid: a505163f5c342a548897854f574e67ff, type: 3}
       propertyPath: m_Name
       value: 99_Enviroment_Wall_03
       objectReference: {fileID: 0}
+    - target: {fileID: 6550344551863780545, guid: a505163f5c342a548897854f574e67ff, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6550344551863780545, guid: a505163f5c342a548897854f574e67ff, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6209e65906b7d3b45ae8ea4784695500, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
