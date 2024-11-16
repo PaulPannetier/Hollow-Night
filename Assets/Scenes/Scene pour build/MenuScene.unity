@@ -755,12 +755,6 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     soundEffect: 1
-  - name: ActiveLamp
-    audioClip: {fileID: 8300000, guid: c360d5f757d699b418c696fa5529da8f, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    soundEffect: 1
   - name: MineExplosion
     audioClip: {fileID: 8300000, guid: decafe90b9a15044690e2e235bcc4774, type: 3}
     volume: 1

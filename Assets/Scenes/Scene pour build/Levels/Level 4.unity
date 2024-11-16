@@ -163,6 +163,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stair (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4049145259744960493, guid: a65219bef04bfc348b62027c2d706944, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5139715596594398984, guid: a65219bef04bfc348b62027c2d706944, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5428153586264310806, guid: a65219bef04bfc348b62027c2d706944, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
@@ -234,6 +242,10 @@ PrefabInstance:
     - target: {fileID: 5483168512769465778, guid: a65219bef04bfc348b62027c2d706944, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 6269277083321213079, guid: a65219bef04bfc348b62027c2d706944, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -332,11 +344,11 @@ Transform:
   m_GameObject: {fileID: 76298561}
   serializedVersion: 2
   m_LocalRotation: {x: 0.51899135, y: -0.21828577, z: 0.13906328, w: 0.81465375}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 3.05, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.4106966, z: 1.0893034}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 139911684}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 65, y: -30, z: 0}
 --- !u!114 &76298564
 MonoBehaviour:
@@ -502,8 +514,6 @@ Transform:
   m_Children:
   - {fileID: 793190722}
   - {fileID: 1322350579}
-  - {fileID: 890824012}
-  - {fileID: 76298563}
   - {fileID: 501807203}
   - {fileID: 385118493}
   m_Father: {fileID: 0}
@@ -630,6 +640,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 99_Enviroment_Floor_03
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f5a2aed0ed573f4479111a67565c1d46, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -649,6 +663,7 @@ GameObject:
   - component: {fileID: 343918177}
   - component: {fileID: 343918176}
   - component: {fileID: 343918178}
+  - component: {fileID: 343918179}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -702,6 +717,97 @@ MonoBehaviour:
   rewardScene: RewardScene
   menuScene: MenuScene
   levelList: []
+--- !u!114 &343918179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343918175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15303d0403243794e93bb695a0f573ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioParent: {fileID: 0}
+  _masterVolume: 1
+  _musicVolume: 1
+  _soundEffectsVolume: 1
+  audioClips:
+  - name: Menu
+    audioClip: {fileID: 8300000, guid: a08156bc7016e4042a3dc1015415efc5, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    soundEffect: 0
+  - name: Tuto
+    audioClip: {fileID: 8300000, guid: a81def822f719714c9ecf29e82a4fe67, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    soundEffect: 0
+  - name: Level1
+    audioClip: {fileID: 8300000, guid: 3e10bcee3bc3c7b41a35bed0da6fe9dd, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    soundEffect: 0
+  - name: Level2
+    audioClip: {fileID: 8300000, guid: 59929539126ca5e47aaf2d5ebd13f09c, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    soundEffect: 0
+  - name: Level3
+    audioClip: {fileID: 8300000, guid: 1f756c9867b1f4e4a88b0d77c8e24538, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    soundEffect: 0
+  - name: Level3
+    audioClip: {fileID: 8300000, guid: 1f756c9867b1f4e4a88b0d77c8e24538, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    soundEffect: 0
+  - name: ActiveLamp
+    audioClip: {fileID: 8300000, guid: c360d5f757d699b418c696fa5529da8f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    soundEffect: 1
+  - name: MineExplosion
+    audioClip: {fileID: 8300000, guid: decafe90b9a15044690e2e235bcc4774, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    soundEffect: 1
+  - name: PlayerDie1
+    audioClip: {fileID: 8300000, guid: 381d1b2e4abd55e4eba7b1928a890a77, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    soundEffect: 1
+  - name: PlayerDie2
+    audioClip: {fileID: 8300000, guid: d9c6259a4c788c74e832a1c36d461268, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    soundEffect: 1
+  - name: PlayerDie3
+    audioClip: {fileID: 8300000, guid: 7e1004fe1464da24993850970f96752b, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    soundEffect: 1
+  - name: TakeHalo
+    audioClip: {fileID: 8300000, guid: 020f0863a4af2774fb95c1573a6023db, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    soundEffect: 1
+  musicSourcePrefab: {fileID: 8283382841306009348, guid: 77bcad56c5ea64f41af30bcd213ddce1, type: 3}
+  soundEffectSourcePrefab: {fileID: 8283382841306009348, guid: 9b33cb5ededfb304ba0618941ec6513c, type: 3}
 --- !u!1 &385118492
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,7 +817,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 385118493}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Left Bridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -800,6 +906,10 @@ PrefabInstance:
     - target: {fileID: 1963584078338303645, guid: 9553b621a564db5419b3bf2d8cd74852, type: 3}
       propertyPath: m_Name
       value: Fence Wall B
+      objectReference: {fileID: 0}
+    - target: {fileID: 1963584078338303645, guid: 9553b621a564db5419b3bf2d8cd74852, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -891,6 +1001,7 @@ MonoBehaviour:
   lightSpeedVariation: 5
   dayIntensity: 1
   nightIntensity: 0
+  musicName: 
   isNight: 0
   isLevelRunning: 0
 --- !u!4 &455795983
@@ -1299,6 +1410,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: 99_Enviroment_Doors (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 65536e910924dd84cbb1310ea1cdd100, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 943448244957059608, guid: 65536e910924dd84cbb1310ea1cdd100, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -2029792373924177038, guid: 65536e910924dd84cbb1310ea1cdd100, type: 3}
@@ -1672,6 +1791,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 99_Enviroment_Floor_03 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f5a2aed0ed573f4479111a67565c1d46, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1952,11 +2075,11 @@ Transform:
   m_GameObject: {fileID: 890824009}
   serializedVersion: 2
   m_LocalRotation: {x: -0.46441603, y: -0.0055816015, z: 0.0029278928, w: -0.8855947}
-  m_LocalPosition: {x: 0.71, y: 23.39, z: -14}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 1.0649999, y: 23.439999, z: -21}
+  m_LocalScale: {x: 1.4999999, y: 1.3383366, z: 1.1616633}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 139911684}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 55.346, y: 0.722, z: 0}
 --- !u!114 &890824013
 MonoBehaviour:
@@ -2042,6 +2165,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stair
       objectReference: {fileID: 0}
+    - target: {fileID: 4049145259744960493, guid: a65219bef04bfc348b62027c2d706944, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5139715596594398984, guid: a65219bef04bfc348b62027c2d706944, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5428153586264310806, guid: a65219bef04bfc348b62027c2d706944, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -2093,6 +2224,10 @@ PrefabInstance:
     - target: {fileID: 5428153586264310806, guid: a65219bef04bfc348b62027c2d706944, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6269277083321213079, guid: a65219bef04bfc348b62027c2d706944, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3250,6 +3385,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 99_Enviroment_Floor_05
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6670a1e69c32cf14c805b03a61a90bb0, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4188,6 +4327,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: 99_Enviroment_Doors
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 65536e910924dd84cbb1310ea1cdd100, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 943448244957059608, guid: 65536e910924dd84cbb1310ea1cdd100, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -2029792373924177038, guid: 65536e910924dd84cbb1310ea1cdd100, type: 3}
@@ -4566,4 +4713,6 @@ SceneRoots:
   - {fileID: 455795983}
   - {fileID: 343918177}
   - {fileID: 1067619853}
+  - {fileID: 890824012}
+  - {fileID: 76298563}
   - {fileID: 139911684}
