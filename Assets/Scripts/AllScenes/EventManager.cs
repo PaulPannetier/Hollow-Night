@@ -32,10 +32,9 @@ public class EventManager : MonoBehaviour
         instance = this;
     }
 
-    public void OnPlayerDie(PlayerData player)
+    public void OnPlayerDie(PlayerData playerWhoDied, PlayerData killer)
     {
-        LevelManager.instance.DestroyPlayer(player);
-
+        LevelManager.instance.DestroyPlayer(playerWhoDied, killer);
     }
 
     public void InitialiseGame(int nbOfGame)
@@ -59,7 +58,7 @@ public class EventManager : MonoBehaviour
             nextLevels.Add(nextLevel);
         }
 
-        Debug.Log($"Liste des prochains niveaux générés : {string.Join(", ", nextLevels)}");
+        Debug.Log($"Liste des prochains niveaux g�n�r�s : {string.Join(", ", nextLevels)}");
     }
 
     public void SwitchScene()

@@ -275,6 +275,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4a8e51e742178d4c82dcc566c6b5061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useInspectorControllerType: 0
+  inspectorControllerType: 0
   upInput:
     keysKeyboard: 77000000
     keyGamepad1: 00000000
@@ -409,12 +411,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   torchLight: {fileID: 2635625428874490624}
   spottedLight: {fileID: 3996662569235969192}
-  playerAndWallMask:
-    serializedVersion: 2
-    m_Bits: 0
-  coneAngle: 45
-  rayDistance: 5
-  rayCount: 10
+  rayCount: 100
+  durationToKill: 2
 --- !u!114 &1855303591012539495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -455,13 +453,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7089883570896007701}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.4999891, y: 0.003425945, z: 0.0072429446, w: 0.8659946}
-  m_LocalPosition: {x: 0.01, y: -0.9, z: 4.36}
+  m_LocalRotation: {x: -0.60876137, y: 0, z: 0, w: 0.7933534}
+  m_LocalPosition: {x: 0, y: -1.44, z: -0.38}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3863874825797312487}
-  m_LocalEulerAnglesHint: {x: -60, y: -0.15, z: 1.045}
+  m_LocalEulerAnglesHint: {x: -75, y: 0, z: 0}
 --- !u!108 &2635625428874490624
 Light:
   m_ObjectHideFlags: 0
@@ -472,10 +470,10 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 10
-  m_Range: 5
-  m_SpotAngle: 60.000004
+  m_Color: {r: 1, g: 0.9590337, b: 0.759434, a: 1}
+  m_Intensity: 15
+  m_Range: 6
+  m_SpotAngle: 60
   m_InnerSpotAngle: 0
   m_CookieSize: 10
   m_Shadows:
@@ -485,7 +483,7 @@ Light:
     m_Strength: 1
     m_Bias: 0.05
     m_NormalBias: 0.4
-    m_NearPlane: 0.07
+    m_NearPlane: 0.08
     m_CullingMatrixOverride:
       e00: 1
       e01: 0
@@ -515,7 +513,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}

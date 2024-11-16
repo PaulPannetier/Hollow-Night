@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
+#if UNITY_EDITOR
+    [SerializeField] private bool useInspectorControllerType;
+    [SerializeField] private ControllerType inspectorControllerType;
+#endif
+
     [SerializeField] private InputManager.GeneralInput upInput;
     [SerializeField] private InputManager.GeneralInput downInput;
     [SerializeField] private InputManager.GeneralInput rightInput;
@@ -35,6 +40,16 @@ public class PlayerInput : MonoBehaviour
     [HideInInspector] public float x, y;
     [HideInInspector] public int rawX, rawY;
 
+    private void Start()
+    {
+#if UNITY_EDITOR
+        if(useInspectorControllerType)
+        {
+            controllerType = inspectorControllerType;
+        }
+#endif
+    }
+
     private void Update()
     {
         if(controllerType == ControllerType.Keyboard)
@@ -67,4 +82,20 @@ public class PlayerInput : MonoBehaviour
         rawX = Mathf.Abs(x) >= 0.1f ? (x > 0f ? 1 : - 1) : 0;
         rawY = Mathf.Abs(y) >= 0.1f ? (y > 0f ? 1 : - 1) : 0;
     }
+
+    #region OnValidate
+
+#if UNITY_EDITOR
+
+    private void OnValidate()
+    {
+        if(useInspectorControllerType)
+        {
+            controllerType = inspectorControllerType;
+        }
+    }
+
+#endif
+
+    #endregion
 }

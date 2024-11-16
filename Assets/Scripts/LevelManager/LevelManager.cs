@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -11,7 +9,7 @@ public class LevelManager : MonoBehaviour
     public static LevelManager instance;
 
     [Header("Player")]
-    public GameObject[] players;
+    [SerializeField] private GameObject[] players;
 
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private List<PlayerData> currentPlayers = new List<PlayerData>();
@@ -47,7 +45,6 @@ public class LevelManager : MonoBehaviour
     public bool isLevelRunning = false;
     private bool Error => players.Count() > spawnPoints.Count();
 
-
     private void Awake()
     {
         if (instance != null)
@@ -57,6 +54,7 @@ public class LevelManager : MonoBehaviour
         }
         instance = this;
     }
+
     void Start()
     {
         if (Error)
@@ -73,8 +71,6 @@ public class LevelManager : MonoBehaviour
         }
 
         UpdateLight();
-
-
     }
 
     #region Initialise Game
@@ -171,15 +167,16 @@ public class LevelManager : MonoBehaviour
     }
     #endregion
 
-    public void DestroyPlayer(PlayerData player)
+    public void DestroyPlayer(PlayerData playerWhoDied, PlayerData killer)
     {
-        if (currentPlayers.Contains(player))
+        if (currentPlayers.Contains(playerWhoDied))
         {
             print("oui");
-            currentPlayers.Remove(player);
-            Destroy(player.gameObject, 2f);
+            currentPlayers.Remove(playerWhoDied);
+            Destroy(playerWhoDied.gameObject, 2f);
         }
 
+        killer.nbKill++;
     }
 
     #region Fx
@@ -261,5 +258,4 @@ public class LevelManager : MonoBehaviour
     }
 
     #endregion
-
 }
