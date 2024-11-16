@@ -3,7 +3,8 @@ using UnityEngine;
 public class Halo : MonoBehaviour
 {
     private bool isInHead;
-    private Transform hat;
+    private Transform hatTransform;
+    private GameObject playerWithHalo;
     private float timePutOnHead, lastTimeFall;
 
     private LayerMask playerMask, mapMask;
@@ -42,7 +43,11 @@ public class Halo : MonoBehaviour
             {
                 if (collider.CompareTag("Player"))
                 {
-                    hat = collider.gameObject.GetComponent<PlayerData>().hatTransform;
+                    playerWithHalo = collider.gameObject;
+                    PlayerData playerData = playerWithHalo.GetComponent<PlayerData>();
+                    playerWithHalo.GetComponent<PlayerEvent>().OnPlayerPutHat();
+                    hatTransform = playerData.hatTransform;
+                    playerData.hat = gameObject;
                     isInHead = true;
                     timePutOnHead = Time.time;
                     break;
@@ -53,14 +58,16 @@ public class Halo : MonoBehaviour
 
     private void HandleHead()
     {
-        transform.position = hat.position;
+        transform.position = hatTransform.position;
 
         if (Time.time - timePutOnHead > duration)
         {
             timePutOnHead = -10f;
-            hat = null;
+            hatTransform = null;
             isInHead = false;
             lastTimeFall = Time.time;
+            playerWithHalo.GetComponent<PlayerData>().hat = null;
+            playerWithHalo.GetComponent<PlayerEvent>().OnPlayerReleaseHat();
 
             if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit raycast, float.MaxValue, mapMask))
             {
