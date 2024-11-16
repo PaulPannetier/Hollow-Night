@@ -10,6 +10,7 @@ public class CharacterController : MonoBehaviour
     private new Transform transform;
     private RaycastHit groundRaycast;
     private float slopeAngle;
+    private float currentAngle;
 
     [Header("Walk")]
     [SerializeField] private float walkSpeed;
@@ -21,7 +22,8 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private float rotationSpeed;
     [SerializeField, Range(0f, 180f)] private float maxAngleTurn;
     [SerializeField, Range(0f, 90f)] private float maxSlopeAngle;
-    [SerializeField] private AnimationCurve slopeMaxSpeed;
+    [SerializeField] private AnimationCurve slopeSpeedUp;
+    [SerializeField] private AnimationCurve slopeSpeedDown;
 
     private void Awake()
     {
@@ -40,16 +42,21 @@ public class CharacterController : MonoBehaviour
         Vector3 vel = new Vector3(velocity.x, 0f, velocity.y);
 
         rb.linearVelocity = vel;
-        print(slopeAngle * Mathf.Rad2Deg);
+
+        rb.rotation = Quaternion.Euler(0f, -currentAngle, 0f);
     }
 
     private void UpdateState()
     {
+        currentAngle = Vector2.SignedAngle(Vector2.right, velocity);
+
         Physics.Raycast(transform.position, Vector3.down, out groundRaycast, float.MaxValue, mapsMask);
 
         if (groundRaycast.collider != null)
         {
-            slopeAngle = Useful.WrapAngle((Vector3.Angle(velocity, groundRaycast.normal) - 90f) * Mathf.Deg2Rad);
+            Vector3 currentSpeed = velocity.sqrMagnitude > 1e-3f ? new Vector3(velocity.x, 0f, velocity.y) : transform.forward;
+            slopeAngle = Useful.WrapAngle((Vector3.Angle(groundRaycast.normal, currentSpeed) - 90f) * Mathf.Deg2Rad) * Mathf.Rad2Deg;
+            slopeAngle = slopeAngle > 90f ? slopeAngle - 360f : slopeAngle;
         }
         else
         {
@@ -69,7 +76,6 @@ public class CharacterController : MonoBehaviour
         }
 
         Vector2 input = new Vector2(playerInput.x, playerInput.y);
-        float currentAngle = Vector2.SignedAngle(Vector2.right, velocity);
         float targetAngle = Vector2.SignedAngle(Vector2.right, input);
         float newAngle = currentAngle;
 
