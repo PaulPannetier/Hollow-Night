@@ -64,7 +64,7 @@ public class EventManager : MonoBehaviour
             nextLevels.Add(nextLevel);
         }
 
-        Debug.Log($"Liste des prochains niveaux g�n�r�s : {string.Join(", ", nextLevels)}");
+        Debug.Log($"Liste des prochains niveaux générés : {string.Join(", ", nextLevels)}");
     }
 
     public void SwitchScene()
