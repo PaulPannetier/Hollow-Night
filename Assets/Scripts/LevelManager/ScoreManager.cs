@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
@@ -9,6 +10,8 @@ public class ScoreManager : MonoBehaviour
 
     [Header("Score")]
     [SerializeField] private List<ScoreData> scoreDatas = new List<ScoreData>();
+    [SerializeField] private Transform ScorePanel;
+    [SerializeField] private TextMeshProUGUI scoreTextPrefab;
 
 
     private void Awake()
@@ -32,6 +35,8 @@ public class ScoreManager : MonoBehaviour
         {
             scoreDatas.Add(new ScoreData((PlayerID)i, 0));
         }
+
+        HideScorePanel();
     }
 
     public void AddScore(PlayerID playerID, int addScore)
@@ -42,6 +47,38 @@ public class ScoreManager : MonoBehaviour
             {
                 scoreData.score += addScore;
                 break;
+            }
+        }
+    }
+
+    public void DisplayScorePanel()
+    {
+        ScorePanel.gameObject.SetActive(true);
+        UpdateScorePanel();
+    }
+
+    public void HideScorePanel()
+    {
+        ScorePanel.gameObject.SetActive(false);
+    }
+
+    private void UpdateScorePanel()
+    {
+        foreach (Transform scoreText in ScorePanel.transform)
+        {
+            Destroy(scoreText.gameObject);
+        }
+
+        for (int i = 0; i < nbPlayer; i++)
+        {
+            var scoreText = Instantiate(scoreTextPrefab, ScorePanel.position, ScorePanel.rotation, ScorePanel);
+            if (scoreText != null)
+            {
+                scoreText.text = scoreDatas[i].score.ToString();
+            }
+            else
+            {
+                Debug.LogWarning("pas de text pour afficher le score");
             }
         }
     }
