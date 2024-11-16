@@ -46,31 +46,9 @@ public class TorchSystem : MonoBehaviour
                 if(hit.transform.CompareTag("Player"))
                 {
                     Debug.Log("Hit !!");
+                    LevelManager.instance.DestroyPlayer(hit.transform.GetComponent<PlayerData>());
                 }
             }
-            /*RaycastHit hitInfo;
-            Physics.Raycast(transform.position, transform.forward, out hitInfo, 4f, playerAndWallMask);
-
-            Debug.DrawLine(transform.position, transform.position + 4 * transform.forward, Color.green);
-
-
-            PlayerData playerData = hitInfo.transform.GetComponent<PlayerData>();
-
-            if (playerData != null)
-            {
-                print("Hit !!");
-            }
-
-
-            if (hitInfo.rigidbody != null)
-            {
-                Debug.Log(hitInfo.rigidbody.gameObject);
-                if (hitInfo.rigidbody.gameObject != null)
-                {
-                    Debug.Log("touch�");
-                    LevelManager.instance.DestroyPlayer(hitInfo.rigidbody.gameObject.GetComponent<PlayerData>());
-                }
-            }*/
         }
         else if (playerInput.isTorchUp)
         {

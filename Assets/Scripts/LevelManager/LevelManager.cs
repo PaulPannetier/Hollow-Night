@@ -15,7 +15,7 @@ public class LevelManager : MonoBehaviour
     public GameObject[] players;
 
     [SerializeField] private Transform[] spawnPoints;
-    [SerializeField] private List<Transform> currentPlayers = new List<Transform>();
+    [SerializeField] private List<PlayerData> currentPlayers = new List<PlayerData>();
     private Transform lastPlayer;
 
     [Header("EndLevelUI")]
@@ -93,7 +93,7 @@ public class LevelManager : MonoBehaviour
         {
             GameObject newPlayer = Instantiate(players[i], spawnPoints[i].position, spawnPoints[i].rotation, transform);
             newPlayer.GetComponent<PlayerInput>().controllerType = (ControllerType)i;
-            currentPlayers.Add(newPlayer.transform);
+            currentPlayers.Add(newPlayer.GetComponent<PlayerData>());
 
             PlayerData newPlayerData = newPlayer.GetComponent<PlayerData>();
             if (newPlayerData != null)
@@ -114,7 +114,7 @@ public class LevelManager : MonoBehaviour
             return false;
         }
 
-        lastPlayer = currentPlayers[0];
+        lastPlayer = currentPlayers[0].transform;
         return true;
     }
 
@@ -148,14 +148,10 @@ public class LevelManager : MonoBehaviour
 
     public void DestroyPlayer(PlayerData player)
     {
-        foreach (Transform playerTransform in currentPlayers)
-        {
-            if(playerTransform.GetComponent<PlayerData>().playerID == player.playerID)
-            {
-                
-            currentPlayers.Remove(playerTransform);
+        if(currentPlayers.Contains(player)){
+            print("oui");
+            currentPlayers.Remove(player);
             Destroy(player.gameObject, 2f);
-            }
         }
 
     }
