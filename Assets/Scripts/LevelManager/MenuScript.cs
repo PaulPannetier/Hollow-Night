@@ -6,6 +6,8 @@ public class MenuScript : MonoBehaviour
     [SerializeField] private Transform mainsPanel;
     [SerializeField] private Transform nbOfLevel;
 
+    [SerializeField] private string tutorialName = "Tutorial";
+
     private void Start()
     {
         mainsPanel.gameObject.SetActive(true);
@@ -31,7 +33,7 @@ public class MenuScript : MonoBehaviour
 
     public void LaunchTutorial()
     {
-        SceneManager.LoadScene("Tutorial");
+        SceneManager.LoadScene(tutorialName);
     }
 
     public void InitialiseGame(int nbOfGame)
