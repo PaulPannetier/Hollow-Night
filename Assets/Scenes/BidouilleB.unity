@@ -1051,7 +1051,7 @@ GameObject:
   - component: {fileID: 343918176}
   - component: {fileID: 343918178}
   m_Layer: 0
-  m_Name: ScoreManager
+  m_Name: Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1101,6 +1101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rewardScene: RewardScene
+  menuScene: MenuScene
   levelList: []
 --- !u!1001 &355106150
 PrefabInstance:

@@ -337,10 +337,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drawGizmos: 0
   groundCastLength: 0.6
-  walkSpeed: 1
+  walkSpeed: 2
   walkSpeedLerp: 20
   walkDecelerationSpeedLerp: 30
-  sprintSpeed: 2
+  sprintSpeed: 4
   sprintSpeedLerp: 30
   walkInitSpeed: 0.3
   rotationSpeed: 360
@@ -417,7 +417,7 @@ MonoBehaviour:
   torchLight: {fileID: 2635625428874490624}
   spottedLight: {fileID: 3996662569235969192}
   rayCount: 100
-  durationToKill: 0.5
+  durationToKill: 0.3
 --- !u!114 &1855303591012539495
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -16,7 +16,6 @@ public class EventManager : MonoBehaviour
     [SerializeField] private string menuScene = "MenuScene";
     [SerializeField] private List<string> levelList = new List<string>();
     private List<string> nextLevels = new List<string>();
-    private int lvID;
     private int nbOfGame;
 
     private bool isGameEnd = false;
@@ -53,11 +52,17 @@ public class EventManager : MonoBehaviour
             Debug.LogWarning("La liste des niveaux est vide ou `nbOfGame` est invalide.");
             return;
         }
+        List<string> _levelList = levelList;
 
         for (int i = 0; i < nbOfGame; i++)
         {
-            string nextLevel = levelList[Random.Rand(0, levelList.Count - 1)];
+            string nextLevel = _levelList[Random.Rand(0, levelList.Count - 1)];
+            _levelList.Remove(nextLevel);
             nextLevels.Add(nextLevel);
+            if (_levelList.Count == 0)
+            {
+                _levelList = levelList;
+            }
         }
 
         Debug.Log($"Liste des prochains niveaux g�n�r�s : {string.Join(", ", nextLevels)}");
