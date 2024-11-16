@@ -746,12 +746,6 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     soundEffect: 0
-  - name: Level3
-    audioClip: {fileID: 8300000, guid: 1f756c9867b1f4e4a88b0d77c8e24538, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 1
-    soundEffect: 0
   - name: ActiveLamp
     audioClip: {fileID: 8300000, guid: c360d5f757d699b418c696fa5529da8f, type: 3}
     volume: 1
@@ -818,6 +812,12 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     soundEffect: 0
+  - name: TorchUp
+    audioClip: {fileID: 8300000, guid: e7327214d2e80ff46b5a9389e224b786, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    soundEffect: 1
   musicSourcePrefab: {fileID: 8283382841306009348, guid: 77bcad56c5ea64f41af30bcd213ddce1, type: 3}
   soundEffectSourcePrefab: {fileID: 8283382841306009348, guid: 9b33cb5ededfb304ba0618941ec6513c, type: 3}
 --- !u!81 &508056028

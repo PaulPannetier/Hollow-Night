@@ -45,6 +45,11 @@ public class TorchSystem : MonoBehaviour
     {
         if (isNight)
         {
+            if(playerInput.isTorchDown)
+            {
+                AudioManager.instance.PlaySound("TorchUp", 1f);
+            }
+
             if (playerInput.isTorchPressed)
             {
                 torchLight.enabled = true;
