@@ -16,6 +16,7 @@ public class CharacterController : MonoBehaviour
     private float lastTimeSpawnSprintFX;
     private int lightUpCounter;
     private bool isLightUp => lightUpCounter > 0;
+    private float lastTimerFeetSound = -10f;
 
 #if UNITY_EDITOR
     [SerializeField] private bool drawGizmos;
@@ -47,6 +48,8 @@ public class CharacterController : MonoBehaviour
     [Header("FX")]
     [SerializeField] private GameObject[] sprintFX;
     [SerializeField] private float delayBetween2sprintFX;
+    [SerializeField] private float delayBetween2SoundFoot;
+
 
     private void Awake()
     {
@@ -75,10 +78,7 @@ public class CharacterController : MonoBehaviour
 
         rb.linearVelocity = velocity;
 
-        //print(currentAngle);
         rb.rotation = Quaternion.Euler(0f, -currentAngle, 0f);
-
-        print(slopeAngle);
     }
 
     private void UpdateState()
@@ -86,6 +86,15 @@ public class CharacterController : MonoBehaviour
         if(playerInput.rawX != 0 || playerInput.rawY != 0)
         {
             currentAngle = Vector2.SignedAngle(Vector2.up, new Vector2(velocity.x, velocity.z));
+            if(Time.time - lastTimerFeetSound > delayBetween2SoundFoot)
+            {
+                lastTimerFeetSound = Time.time;
+                AudioManager.instance.PlaySound("FootStep", 0.1f);
+            }
+        }
+        else
+        {
+            lastTimerFeetSound = -10f;
         }
 
         Physics.SphereCast(transform.position, capsuleCollider.radius, Vector3.down, out RaycastHit groundRaycast, groundCastLength, mapsMask);
@@ -222,6 +231,7 @@ public class CharacterController : MonoBehaviour
         fallSpeed = Mathf.Max(fallSpeed, 0f);
         fallDecelerationSpeedLerp = Mathf.Max(fallDecelerationSpeedLerp, 0f);
         fallSpeedLerp = Mathf.Max(fallSpeedLerp, 0f);
+        delayBetween2SoundFoot = Mathf.Max(delayBetween2SoundFoot, 0f);
     }
 
 #endif

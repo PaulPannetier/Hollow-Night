@@ -7619,6 +7619,26 @@ PrefabInstance:
       propertyPath: winnerNameText
       value: 
       objectReference: {fileID: 1242029206}
+    - target: {fileID: 1831558001417331926, guid: f400bfeb68b2df64680102aa86f54ecc, type: 3}
+      propertyPath: players.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1831558001417331926, guid: f400bfeb68b2df64680102aa86f54ecc, type: 3}
+      propertyPath: 'players.Array.data[0]'
+      value: 
+      objectReference: {fileID: 7030187534923222893, guid: d20c8b3df893c2c4f8133550ade5f7ea, type: 3}
+    - target: {fileID: 1831558001417331926, guid: f400bfeb68b2df64680102aa86f54ecc, type: 3}
+      propertyPath: 'players.Array.data[1]'
+      value: 
+      objectReference: {fileID: 7030187534923222893, guid: d20c8b3df893c2c4f8133550ade5f7ea, type: 3}
+    - target: {fileID: 1831558001417331926, guid: f400bfeb68b2df64680102aa86f54ecc, type: 3}
+      propertyPath: 'players.Array.data[2]'
+      value: 
+      objectReference: {fileID: 7030187534923222893, guid: d20c8b3df893c2c4f8133550ade5f7ea, type: 3}
+    - target: {fileID: 1831558001417331926, guid: f400bfeb68b2df64680102aa86f54ecc, type: 3}
+      propertyPath: 'players.Array.data[3]'
+      value: 
+      objectReference: {fileID: 7030187534923222893, guid: d20c8b3df893c2c4f8133550ade5f7ea, type: 3}
     - target: {fileID: 8788612546701226175, guid: f400bfeb68b2df64680102aa86f54ecc, type: 3}
       propertyPath: m_Name
       value: LevelManager
