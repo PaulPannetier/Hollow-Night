@@ -8,14 +8,12 @@ public abstract class LightInteractable : MonoBehaviour
 
     public virtual void BeginInteract(GameObject lighter)
     {
-        print("Begin");
         interractCounter++;
         lastActivator = lighter;
     }
 
     public virtual void EndInteract(GameObject lighter)
     {
-        print("end");
         interractCounter--;
     }
 }

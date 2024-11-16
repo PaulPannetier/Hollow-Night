@@ -468,6 +468,7 @@ MonoBehaviour:
   playerID: 0
   nbKill: 0
   hatTransform: {fileID: 3669634429500509588}
+  hat: {fileID: 0}
 --- !u!114 &6554988947039058931
 MonoBehaviour:
   m_ObjectHideFlags: 0
