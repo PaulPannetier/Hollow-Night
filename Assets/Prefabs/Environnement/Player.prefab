@@ -332,6 +332,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79e38260a8434dc4999a5bbc2d0d8e62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drawGizmos: 1
+  groundRaycastLength: 0.6
   walkSpeed: 1
   walkSpeedLerp: 20
   walkDecelerationSpeedLerp: 30
@@ -340,7 +342,7 @@ MonoBehaviour:
   walkInitSpeed: 0.3
   rotationSpeed: 360
   maxAngleTurn: 50
-  maxSlopeAngle: 0
+  maxSlopeAngle: 45
   slopeSpeedUp:
     serializedVersion: 2
     m_Curve: []
@@ -353,6 +355,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  distanceFromGround: 0
 --- !u!114 &5039652864819706456
 MonoBehaviour:
   m_ObjectHideFlags: 0
