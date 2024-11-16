@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Mine : MonoBehaviour
 {
-    [SerializeField] private GameObject boomFx;
+    [SerializeField] private GameObject[] boomFx;
     [SerializeField] private Transform boomPoint;
     [SerializeField] private float cooldown = 2f;
 
@@ -20,7 +20,7 @@ public class Mine : MonoBehaviour
     private void FaireBoom()
     {
         StartCoroutine(ResetBoom());
-        GameObject a = Instantiate(boomFx, boomPoint.position, boomPoint.rotation, transform);
+        GameObject a = Instantiate(boomFx.GetRandom(), boomPoint.position, boomPoint.rotation, transform);
         Destroy(a, 2f);
         AudioManager.instance.PlaySound("MineExplosion", 1f);
     }

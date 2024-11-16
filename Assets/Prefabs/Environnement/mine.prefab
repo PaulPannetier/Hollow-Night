@@ -122,7 +122,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dab1cec906dad24eb3cff2d5efe0c3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boomFx: {fileID: 6454885767206646937, guid: 9ac94b7e96524b84eb84d01d11701c73, type: 3}
+  boomFx:
+  - {fileID: 7613085221172406954, guid: 04fe50603ea98614493e0282002a540a, type: 3}
+  - {fileID: 6454885767206646937, guid: 9ac94b7e96524b84eb84d01d11701c73, type: 3}
+  - {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
   boomPoint: {fileID: 8184408894608153179}
   cooldown: 2
 --- !u!1 &7533106325119831332
