@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 5cb41aefde75aab4398926231941ac6b, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -177,7 +177,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Hollow Night\n~~~~~~~~~~~~~~\n\nGameJam 2024\n\nR\xE9alis\xE9 par : \nL\xE9onard\nBaptiste\nAlexandre\n\nEn
-    collaboration avec\nPlaySU\n"
+    collaboration avec\nPlaySU\n\nR\xE9alis\xE9 avec le soutiens moral de :\nAleksiia\nAlex\nSalim\nAdrien
+    du jeu de plateau\n\nEn regretant ceux qui sont parti trop tot\n(\xE0 9h ce matin
+    ....)\nLais\nl'autre Alexandre alias Jesus\n\n~~~~~~~~~~~~~\nHollow Night\n~~~~~~~~~~~~~\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -570,7 +572,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   creditsText: {fileID: 714383953}
   scrollSpeed: 50
-  resetDelay: 10
+  resetDelay: 6
   menuScene: MenuScene
 --- !u!1 &1941109864
 GameObject:
