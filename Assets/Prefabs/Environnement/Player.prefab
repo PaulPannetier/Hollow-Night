@@ -413,7 +413,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   coneAngle: 45
-  rayDistance: 10
+  rayDistance: 5
   rayCount: 10
 --- !u!114 &1855303591012539495
 MonoBehaviour:
@@ -474,8 +474,8 @@ Light:
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 10
-  m_Range: 7
-  m_SpotAngle: 60
+  m_Range: 5
+  m_SpotAngle: 60.000004
   m_InnerSpotAngle: 0
   m_CookieSize: 10
   m_Shadows:
