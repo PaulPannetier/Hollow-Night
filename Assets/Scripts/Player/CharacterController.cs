@@ -13,6 +13,7 @@ public class CharacterController : MonoBehaviour
     private float slopeAngle;
     private float currentAngle;
     private bool isGrounded => groundRaycast.collider != null;
+    private float lastTimeSpawnSprintFX;
 
 #if UNITY_EDITOR
     [SerializeField] private bool drawGizmos;
@@ -39,6 +40,10 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private float fallDecelerationSpeedLerp;
     [SerializeField] private float fallSpeedLerp;
 
+    [Header("FX")]
+    [SerializeField] private GameObject[] sprintFX;
+    [SerializeField] private float delayBetween2sprintFX;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -46,6 +51,7 @@ public class CharacterController : MonoBehaviour
         capsuleCollider = GetComponent<CapsuleCollider>();
         mapsMask = LayerMask.GetMask("Map");
         this.transform = base.transform;
+        lastTimeSpawnSprintFX = -10f;
     }
 
     private void Start()
@@ -136,6 +142,16 @@ public class CharacterController : MonoBehaviour
         Vector3 dir = new Vector3(speed2D.x, 0f, speed2D.y).normalized;
         dir = new Vector3(dir.x, Mathf.Tan(slopeAngle * Mathf.Deg2Rad), dir.z).normalized;
         velocity = dir * newSpeed;
+
+        //FX
+        if(!(playerInput.rawX == 0 && playerInput.rawY == 0) && playerInput.isSprintPressed)
+        {
+            if(Time.time - lastTimeSpawnSprintFX > delayBetween2sprintFX)
+            {
+                Instantiate(sprintFX.GetRandom(), transform.position + Vector3.down * capsuleCollider.height, Quaternion.identity, transform);
+                lastTimeSpawnSprintFX = Time.time;
+            }
+        }
     }
 
     #endregion

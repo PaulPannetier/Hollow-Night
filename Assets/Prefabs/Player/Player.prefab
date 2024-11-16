@@ -397,6 +397,11 @@ MonoBehaviour:
   fallSpeed: 10
   fallDecelerationSpeedLerp: 1
   fallSpeedLerp: 10
+  sprintFX:
+  - {fileID: 100000, guid: 70657efa54cdc5c45bbd8c264c1f3ac0, type: 3}
+  - {fileID: 100000, guid: b459f50dc18b6094e9d90c74422ad28c, type: 3}
+  - {fileID: 100000, guid: 6a4d502ec228b6245b60c7eb1e0f842c, type: 3}
+  delayBetween2sprintFX: 0.5
 --- !u!114 &5039652864819706456
 MonoBehaviour:
   m_ObjectHideFlags: 0
