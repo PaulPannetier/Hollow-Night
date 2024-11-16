@@ -11,7 +11,7 @@ public class TorchSystem : MonoBehaviour
     private PlayerData playerData;
     private bool isNight => LevelManager.instance.isNight;
     private float lightRange => isPuttingAHat ? 2f * torchLight.range : torchLight.range;
-    private float coneAngle => isPuttingAHat ? 1.5f * torchLight.spotAngle : torchLight.spotAngle;
+    private float coneAngle => isPuttingAHat ? 1.1f * torchLight.spotAngle : torchLight.spotAngle;
     private List<EnemiData> enemies;
     private HashSet<LightInteractable> lightInteractables;
     private LayerMask playerAndWallMask, lightInteractableMask;
@@ -129,7 +129,7 @@ public class TorchSystem : MonoBehaviour
     {
         isPuttingAHat = true;
         torchLight.intensity = 3f * baseTorchLightIntensity;
-        torchLight.spotAngle = 1.5f * baseTorchSpotAngle;
+        torchLight.spotAngle = 1.1f * baseTorchSpotAngle;
     }
 
     public void OnRealeaseHat()

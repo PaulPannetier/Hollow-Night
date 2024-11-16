@@ -858,6 +858,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 647475150}
     - target: {fileID: 5228246245017261111, guid: 5ab09e708ed324642a8b9583d0a7ddec, type: 3}
+      propertyPath: timeBeforeScorePanel
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5228246245017261111, guid: 5ab09e708ed324642a8b9583d0a7ddec, type: 3}
       propertyPath: 'players.Array.data[1]'
       value: 
       objectReference: {fileID: 7030187534923222893, guid: 961e9eab56b061643a22b6ecf1c7006e, type: 3}

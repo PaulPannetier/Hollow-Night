@@ -742,7 +742,7 @@ MonoBehaviour:
     soundEffect: 0
   - name: Level3
     audioClip: {fileID: 8300000, guid: 1f756c9867b1f4e4a88b0d77c8e24538, type: 3}
-    volume: 1
+    volume: 0.6
     pitch: 1
     loop: 1
     soundEffect: 0
@@ -802,6 +802,12 @@ MonoBehaviour:
     soundEffect: 1
   - name: Level5
     audioClip: {fileID: 8300000, guid: 58db252a37cdb374eb75490b63807bf1, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    soundEffect: 1
+  - name: Credit
+    audioClip: {fileID: 8300000, guid: b6c6f60984b9ca346958c762cf31d53b, type: 3}
     volume: 1
     pitch: 1
     loop: 0
