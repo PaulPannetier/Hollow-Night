@@ -452,7 +452,7 @@ MonoBehaviour:
   torchLight: {fileID: 2635625428874490624}
   spottedLight: {fileID: 3996662569235969192}
   rayCount: 100
-  durationToKill: 0.3
+  durationToKill: 0.5
 --- !u!114 &1855303591012539495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -525,8 +525,8 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 0.9590337, b: 0.759434, a: 1}
-  m_Intensity: 15
-  m_Range: 6
+  m_Intensity: 50
+  m_Range: 5
   m_SpotAngle: 60
   m_InnerSpotAngle: 0
   m_CookieSize: 10

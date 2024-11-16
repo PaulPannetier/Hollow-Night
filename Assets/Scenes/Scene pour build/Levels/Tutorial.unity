@@ -684,6 +684,7 @@ MonoBehaviour:
   - {fileID: 580094325922532208}
   - {fileID: 1629752819407222569}
   - {fileID: 6782738159931470645}
+  playerDeathFx: {fileID: 100004, guid: 7867af58a6ec48846ae807eb4022fbaa, type: 3}
   currentPlayers: []
   endLevelPanel: {fileID: 700558407}
   winnerNameText: {fileID: 700558408}

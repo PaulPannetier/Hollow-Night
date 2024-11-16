@@ -29,5 +29,15 @@ public class MenuScript : MonoBehaviour
         nbOfLevel.gameObject.SetActive(false);
     }
 
+    public void LaunchTutorial()
+    {
+        SceneManager.LoadScene("Tutorial");
+    }
+
+    public void InitialiseGame(int nbOfGame)
+    {
+        EventManager.instance.InitialiseGame(nbOfGame);
+    }
+
 }
 

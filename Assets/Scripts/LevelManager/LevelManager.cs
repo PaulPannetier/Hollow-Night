@@ -12,7 +12,9 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject[] players;
 
     [SerializeField] private Transform[] spawnPoints;
+    [SerializeField] private GameObject playerDeathFx;
     [SerializeField] private List<PlayerData> currentPlayers = new List<PlayerData>();
+
     private Transform lastPlayer;
 
     [Header("EndLevelUI")]
@@ -173,6 +175,7 @@ public class LevelManager : MonoBehaviour
         {
             print("oui");
             currentPlayers.Remove(playerWhoDied);
+            Instantiate(playerDeathFx, playerWhoDied.transform.position, playerWhoDied.transform.rotation,transform);
             Destroy(playerWhoDied.gameObject, 0f);
         }
 
