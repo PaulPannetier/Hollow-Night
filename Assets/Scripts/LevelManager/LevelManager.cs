@@ -21,6 +21,7 @@ public class LevelManager : MonoBehaviour
     [Header("EndLevelUI")]
     [SerializeField] private Transform endLevelPanel;
     [SerializeField] private TextMeshProUGUI winnerNameText;
+    [SerializeField] private float timeBeforeScorePanel = 10f;
     [SerializeField] private GameObject endLevelFx;
     [SerializeField] private Transform fxPointsList;
     private Transform[] fxPoints;
@@ -102,7 +103,7 @@ public class LevelManager : MonoBehaviour
         {
             Debug.LogWarning("fxPointsList n'est pas assigné dans l'inspecteur !");
         }
-        
+
     }
 
     private void InstantiatePlayers()
@@ -153,6 +154,7 @@ public class LevelManager : MonoBehaviour
         }
 
         CheckEndLevelFx();
+        StartCoroutine(DisplayScorePanel());
 
     }
 
@@ -162,11 +164,18 @@ public class LevelManager : MonoBehaviour
         PlayerData lastPlayerData = lastPlayer.GetComponent<PlayerData>();
         ScoreManager.instance.AddScore(lastPlayerData.playerID, 1);
     }
+
+    private IEnumerator DisplayScorePanel()
+    {
+        yield return new WaitForSeconds(timeBeforeScorePanel);
+        ScoreManager.instance.DisplayScorePanel();
+    }
     #endregion
 
     public void DestroyPlayer(PlayerData player)
     {
-        if(currentPlayers.Contains(player)){
+        if (currentPlayers.Contains(player))
+        {
             print("oui");
             currentPlayers.Remove(player);
             Destroy(player.gameObject, 2f);
@@ -174,36 +183,39 @@ public class LevelManager : MonoBehaviour
 
     }
 
+    #region Fx
     private void CheckEndLevelFx()
-{
-    if (fxPoints.Length > 0 && !isLevelRunning && !isInstantiating)
     {
-        StartCoroutine(InstantiateEndLevelFx());
-    }
-}
-
-private IEnumerator InstantiateEndLevelFx()
-{
-    isInstantiating = true; // Empêche d'autres appels pendant l'exécution
-
-    int fxCount = 20; // Nombre total d'effets à instancier
-    float interval = 0.5f; // Intervalle entre chaque effet
-
-    for (int i = 0; i < fxCount; i++)
-    {
-        // Choisir un point aléatoire
-        int randomIndex = Random.Rand(0, fxPoints.Length -1);
-        Vector3 spawnPosition = fxPoints[randomIndex].position;
-
-        // Instancier l'effet
-        Instantiate(endLevelFx, spawnPosition, Quaternion.identity);
-
-        // Attendre avant de passer au suivant
-        yield return new WaitForSeconds(interval);
+        if (fxPoints.Length > 0 && !isLevelRunning && !isInstantiating)
+        {
+            StartCoroutine(InstantiateEndLevelFx());
+        }
     }
 
-    isInstantiating = false; // Fin de l'instantiation
-}
+    private IEnumerator InstantiateEndLevelFx()
+    {
+        isInstantiating = true; // Empêche d'autres appels pendant l'exécution
+
+        int fxCount = 20; // Nombre total d'effets à instancier
+        float interval = 0.5f; // Intervalle entre chaque effet
+
+        for (int i = 0; i < fxCount; i++)
+        {
+            // Choisir un point aléatoire
+            int randomIndex = Random.Rand(0, fxPoints.Length - 1);
+            Vector3 spawnPosition = fxPoints[randomIndex].position;
+
+            // Instancier l'effet
+            Instantiate(endLevelFx, spawnPosition, Quaternion.identity);
+
+            // Attendre avant de passer au suivant
+            yield return new WaitForSeconds(interval);
+        }
+
+        isInstantiating = false; // Fin de l'instantiation
+    }
+
+    #endregion
     public void LoadScene(string scene)
     {
         SceneManager.LoadScene(scene);
