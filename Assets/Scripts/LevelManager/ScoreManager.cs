@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
@@ -56,8 +55,15 @@ public class ScoreManager : MonoBehaviour
     public void DisplayScorePanel()
     {
         currentScorePanel = Instantiate(ScoreCanva, transform);
-        GetComponentInChildren<Button>().onClick.AddListener(HideScorePanel);
+        GetComponentInChildren<Button>().onClick.AddListener(OnButtonClick);
+
         UpdateScorePanel();
+    }
+
+    private void OnButtonClick()
+    {
+        HideScorePanel();
+        EventManager.instance.SwitchScene();
     }
 
     public void HideScorePanel()
@@ -84,6 +90,8 @@ public class ScoreManager : MonoBehaviour
             }
         }
     }
+
+
 
 
 }

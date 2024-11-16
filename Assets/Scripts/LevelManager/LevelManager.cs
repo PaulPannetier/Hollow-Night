@@ -5,7 +5,6 @@ using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -63,7 +62,7 @@ public class LevelManager : MonoBehaviour
         if (Error)
             Debug.LogWarning("pas assez de spawnPoints pour les joueurs");
 
-        InitialiseGame();
+        InitialiseLevel();
     }
 
     void Update()
@@ -79,7 +78,7 @@ public class LevelManager : MonoBehaviour
     }
 
     #region Initialise Game
-    private void InitialiseGame()
+    private void InitialiseLevel()
     {
         isLevelRunning = true;
         lastPlayer = null;
@@ -216,10 +215,6 @@ public class LevelManager : MonoBehaviour
     }
 
     #endregion
-    public void LoadScene(string scene)
-    {
-        SceneManager.LoadScene(scene);
-    }
 
     #region Light
     private void UpdateLight()
