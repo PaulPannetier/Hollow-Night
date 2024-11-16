@@ -78,8 +78,8 @@ public class LevelManager : MonoBehaviour
         for (int i = 0; i < players.Count(); i++)
         {
             GameObject newPlayer = Instantiate(players[i], spawnPoints[i].position, spawnPoints[i].rotation, transform);
-            currentPlayers.Add(newPlayer.transform);
             newPlayer.GetComponent<PlayerInput>().controllerType = (ControllerType)i;
+            currentPlayers.Add(newPlayer.transform);
 
         }
     }

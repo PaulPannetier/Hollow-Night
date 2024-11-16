@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
-    [SerializeField] private bool useGamepad;
-
     [SerializeField] private InputManager.GeneralInput upInput;
     [SerializeField] private InputManager.GeneralInput downInput;
     [SerializeField] private InputManager.GeneralInput rightInput;
@@ -37,14 +35,9 @@ public class PlayerInput : MonoBehaviour
     [HideInInspector] public float x, y;
     [HideInInspector] public int rawX, rawY;
 
-    private void Start()
-    {
-        this.controllerType = useGamepad ? ControllerType.Gamepad1 : ControllerType.Keyboard;
-    }
-
     private void Update()
     {
-        if(controllerType == ControllerType.Keyboard && !useGamepad)
+        if(controllerType == ControllerType.Keyboard)
         {
             if (rightInput.IsPressed())
             {
