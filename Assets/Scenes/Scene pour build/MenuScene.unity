@@ -723,7 +723,7 @@ MonoBehaviour:
     soundEffect: 0
   - name: Tuto
     audioClip: {fileID: 8300000, guid: a81def822f719714c9ecf29e82a4fe67, type: 3}
-    volume: 1
+    volume: 0.65
     pitch: 1
     loop: 1
     soundEffect: 0
@@ -783,6 +783,12 @@ MonoBehaviour:
     soundEffect: 1
   - name: TakeHalo
     audioClip: {fileID: 8300000, guid: 020f0863a4af2774fb95c1573a6023db, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    soundEffect: 1
+  - name: FootStep
+    audioClip: {fileID: 8300000, guid: da30acf7171cb5d4b8395181ba8cf038, type: 3}
     volume: 1
     pitch: 1
     loop: 0
