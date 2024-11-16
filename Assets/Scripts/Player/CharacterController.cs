@@ -50,7 +50,9 @@ public class CharacterController : MonoBehaviour
 
     private void Start()
     {
-        currentAngle = Vector3.Angle(transform.forward, Vector3.right);
+        currentAngle = Vector3.Angle(transform.forward, Vector3.right) - 90f;
+        Physics.Raycast(transform.position, Vector3.down, out RaycastHit raycastHit, float.MaxValue, mapsMask);
+        rb.MovePosition(raycastHit.point + Vector3.up * capsuleCollider.height);
     }
 
     private void FixedUpdate()
@@ -68,10 +70,15 @@ public class CharacterController : MonoBehaviour
 
     private void UpdateState()
     {
-        currentAngle = Vector2.SignedAngle(Vector2.right, new Vector2(velocity.x, velocity.z));
+        currentAngle = Vector2.SignedAngle(Vector2.up, new Vector2(velocity.x, velocity.z));
 
-        //Physics.CapsuleCast(,
-        Physics.Raycast(transform.position, Vector3.down, out groundRaycast, groundCastLength, mapsMask);
+        Physics.SphereCast(transform.position, capsuleCollider.radius, Vector3.down, out RaycastHit groundRaycast, groundCastLength, mapsMask);
+        if(groundRaycast.collider != null && !isGrounded)
+        {
+            velocity.y = 0f;
+        }
+        this.groundRaycast = groundRaycast;
+        //Physics.Raycast(transform.position, Vector3.down, out groundRaycast, groundCastLength, mapsMask);
 
         if (groundRaycast.collider != null)
         {
@@ -93,7 +100,7 @@ public class CharacterController : MonoBehaviour
             return;
 
         Vector2 input = new Vector2(playerInput.x, playerInput.y);
-        float targetAngle = Vector2.SignedAngle(Vector2.right, input);
+        float targetAngle = Vector2.SignedAngle(Vector2.up, input);
         float newAngle = currentAngle;
 
         if(Mathf.Abs(targetAngle - newAngle) > maxAngleTurn)
@@ -125,7 +132,7 @@ public class CharacterController : MonoBehaviour
             (playerInput.isSprintPressed ? sprintSpeedLerp : walkSpeedLerp);
         newSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed * input.magnitude, delta * Time.fixedDeltaTime);
 
-        Vector2 speed2D = Useful.Vector2FromAngle(newAngle * Mathf.Deg2Rad, newSpeed);
+        Vector2 speed2D = Useful.Vector2FromAngle((newAngle + 90f) * Mathf.Deg2Rad, newSpeed);
         Vector3 dir = new Vector3(speed2D.x, 0f, speed2D.y).normalized;
         dir = new Vector3(dir.x, Mathf.Tan(slopeAngle * Mathf.Deg2Rad), dir.z).normalized;
         velocity = dir * newSpeed;
@@ -157,16 +164,14 @@ public class CharacterController : MonoBehaviour
             return;
 
         this.transform = base.transform;
-        capsuleCollider = GetComponent<CapsuleCollider>();
 
         Gizmos.color = Color.green;
-        Gizmos.DrawLine(transform.position, transform.position + Vector3.down * (groundCastLength + capsuleCollider.height));
+        Gizmos.DrawLine(transform.position, transform.position + Vector3.down * groundCastLength);
     }
 
     private void OnValidate()
     {
         this.transform = base.transform;
-        capsuleCollider = GetComponent<CapsuleCollider>();
         walkSpeed = Mathf.Max(walkSpeed, 0f);
         sprintSpeed = Mathf.Max(sprintSpeed, 0f);
         walkSpeedLerp = Mathf.Max(walkSpeedLerp, 0f);
