@@ -26,12 +26,12 @@ public class ScoreManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(this);
 
-        InitialiseScore();
 
     }
 
-    private void InitialiseScore()
+    public void InitialiseScore()
     {
+        scoreDatas.Clear();
         for (int i = 0; i < nbPlayer; i++)
         {
             scoreDatas.Add(new ScoreData((PlayerID)i, 0));

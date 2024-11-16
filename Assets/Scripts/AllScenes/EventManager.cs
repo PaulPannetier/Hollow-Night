@@ -41,6 +41,8 @@ public class EventManager : MonoBehaviour
     {
         this.nbOfGame = nbOfGame;
         GenerateNextLevels();
+        ScoreManager.instance.InitialiseScore();
+        SwitchScene();
     }
 
     private void GenerateNextLevels()
@@ -54,7 +56,7 @@ public class EventManager : MonoBehaviour
 
         for (int i = 0; i < nbOfGame; i++)
         {
-            string nextLevel = levelList[Random.Rand(0, levelList.Count)];
+            string nextLevel = levelList[Random.Rand(0, levelList.Count - 1)];
             nextLevels.Add(nextLevel);
         }
 

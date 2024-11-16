@@ -71,20 +71,23 @@ public class CharacterController : MonoBehaviour
 
         rb.linearVelocity = velocity;
 
+        //print(currentAngle);
         rb.rotation = Quaternion.Euler(0f, -currentAngle, 0f);
     }
 
     private void UpdateState()
     {
-        currentAngle = Vector2.SignedAngle(Vector2.up, new Vector2(velocity.x, velocity.z));
+        if(playerInput.rawX != 0 || playerInput.rawY != 0)
+        {
+            currentAngle = Vector2.SignedAngle(Vector2.up, new Vector2(velocity.x, velocity.z));
+        }
 
         Physics.SphereCast(transform.position, capsuleCollider.radius, Vector3.down, out RaycastHit groundRaycast, groundCastLength, mapsMask);
         if(groundRaycast.collider != null && !isGrounded)
         {
-            velocity.y = 0f;
+            velocity = new Vector3(velocity.x, 0f, velocity.z);
         }
         this.groundRaycast = groundRaycast;
-        //Physics.Raycast(transform.position, Vector3.down, out groundRaycast, groundCastLength, mapsMask);
 
         if (groundRaycast.collider != null)
         {
