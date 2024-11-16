@@ -112,14 +112,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5269156202773526311}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 0.229, y: -0, z: -0.225}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.229, y: -0, z: 0.312}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6371519771240521816}
   m_Father: {fileID: 7337283893686204796}
-  m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!33 &575482993717079276
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -334,7 +334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drawGizmos: 1
-  groundRaycastLength: 0.6
+  groundCastLength: 1.64
   walkSpeed: 1
   walkSpeedLerp: 20
   walkDecelerationSpeedLerp: 30
@@ -409,6 +409,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   torchLight: {fileID: 2635625428874490624}
   spottedLight: {fileID: 3996662569235969192}
+  playerAndWallMask:
+    serializedVersion: 2
+    m_Bits: 0
+  coneAngle: 45
+  rayDistance: 10
+  rayCount: 10
 --- !u!114 &1855303591012539495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -570,14 +576,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7441281281784118636}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2959261453340326143}
   m_Father: {fileID: 7337283893686204796}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8352585716483043704
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -657,13 +663,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8497470466503246458}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7337283893686204796}
-  m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!108 &3996662569235969192
 Light:
   m_ObjectHideFlags: 0
