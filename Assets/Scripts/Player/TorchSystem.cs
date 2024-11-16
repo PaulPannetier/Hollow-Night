@@ -189,11 +189,16 @@ public class TorchSystem : MonoBehaviour
         }
 
         HashSet<LightInteractable> lightInteractables = new HashSet<LightInteractable>(hits.Length);
+        int lightMask = LayerMask.GetMask("LightInteractable");
         for (int i = 0; i < hits.Length; i++)
         {
-            if(hits[i].collider != null && hits[i].collider.gameObject.layer == LayerMask.GetMask("LightInteractable"))
+            if(hits[i].collider != null)
             {
-                lightInteractables.Add(hits[i].collider.GetComponent<LightInteractable>());
+                LightInteractable lightInteractable = hits[i].collider.GetComponent<LightInteractable>();
+                if (lightInteractable != null)
+                {
+                    lightInteractables.Add(lightInteractable);
+                }
             }
         }
 
