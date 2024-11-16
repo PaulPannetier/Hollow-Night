@@ -146,7 +146,7 @@ public class CharacterController : MonoBehaviour
         //FX
         if(!(playerInput.rawX == 0 && playerInput.rawY == 0) && playerInput.isSprintPressed)
         {
-            if(Time.time - lastTimeSpawnSprintFX > delayBetween2sprintFX)
+            if(Time.time - lastTimeSpawnSprintFX > delayBetween2sprintFX && LevelManager.instance.isNight)
             {
                 Instantiate(sprintFX.GetRandom(), transform.position + Vector3.down * capsuleCollider.height, Quaternion.identity, transform);
                 lastTimeSpawnSprintFX = Time.time;
