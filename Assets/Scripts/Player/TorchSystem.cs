@@ -5,6 +5,8 @@ public class TorchSystem : MonoBehaviour
     private PlayerInput playerInput;
     [SerializeField] private Light torchLight;
     [SerializeField] private Light spottedLight;
+    private bool isNight => LevelManager.instance.isNight;
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -18,7 +20,7 @@ public class TorchSystem : MonoBehaviour
 
     void Update()
     {
-        if (playerInput.isTorchPressed)
+        if (playerInput.isTorchPressed && isNight)
         {
             torchLight.enabled = true;
             spottedLight.enabled = true;
@@ -28,5 +30,7 @@ public class TorchSystem : MonoBehaviour
             torchLight.enabled = false;
             spottedLight.enabled = false;
         }
+
+
     }
 }
