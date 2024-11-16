@@ -51,18 +51,17 @@ public class EventManager : MonoBehaviour
         {
             Debug.LogWarning("La liste des niveaux est vide ou `nbOfGame` est invalide.");
             return;
-        }
-        List<string> _levelList = levelList;
+        }  List<string> _levelList = new List<string>(levelList);
 
         for (int i = 0; i < nbOfGame; i++)
         {
-            string nextLevel = _levelList[Random.Rand(0, levelList.Count - 1)];
-            _levelList.Remove(nextLevel);
-            nextLevels.Add(nextLevel);
             if (_levelList.Count == 0)
             {
                 _levelList = levelList;
             }
+            string nextLevel = _levelList.GetRandom();
+            _levelList.Remove(nextLevel);
+            nextLevels.Add(nextLevel);
         }
 
         Debug.Log($"Liste des prochains niveaux g�n�r�s : {string.Join(", ", nextLevels)}");
