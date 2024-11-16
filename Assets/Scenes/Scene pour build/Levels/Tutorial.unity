@@ -675,10 +675,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   players:
-  - {fileID: 7030187534923222893, guid: c12bc35de70bc564288ff0aaea113c99, type: 3}
-  - {fileID: 7030187534923222893, guid: c12bc35de70bc564288ff0aaea113c99, type: 3}
-  - {fileID: 7030187534923222893, guid: c12bc35de70bc564288ff0aaea113c99, type: 3}
-  - {fileID: 7030187534923222893, guid: c12bc35de70bc564288ff0aaea113c99, type: 3}
+  - {fileID: 7030187534923222893, guid: d20c8b3df893c2c4f8133550ade5f7ea, type: 3}
+  - {fileID: 7030187534923222893, guid: d20c8b3df893c2c4f8133550ade5f7ea, type: 3}
+  - {fileID: 7030187534923222893, guid: d20c8b3df893c2c4f8133550ade5f7ea, type: 3}
+  - {fileID: 7030187534923222893, guid: d20c8b3df893c2c4f8133550ade5f7ea, type: 3}
   spawnPoints:
   - {fileID: 7763657701510404953}
   - {fileID: 580094325922532208}
