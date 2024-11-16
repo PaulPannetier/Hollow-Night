@@ -9,6 +9,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    public static LevelManager instance;
+
     [Header("Player")]
     public GameObject[] players;
 
@@ -43,6 +45,15 @@ public class LevelManager : MonoBehaviour
     private bool Error => players.Count() > spawnPoints.Count();
 
 
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(this);
+            return;
+        }
+        instance = this;
+    }
     void Start()
     {
         if (Error)
@@ -81,6 +92,12 @@ public class LevelManager : MonoBehaviour
             newPlayer.GetComponent<PlayerInput>().controllerType = (ControllerType)i;
             currentPlayers.Add(newPlayer.transform);
 
+            PlayerData newPlayerData = newPlayer.GetComponent<PlayerData>();
+            if (newPlayerData != null)
+            {
+                newPlayerData.playerID = (PlayerID)i;
+            }
+
         }
     }
 
@@ -102,6 +119,8 @@ public class LevelManager : MonoBehaviour
     {
         Time.timeScale = 0;
 
+        AddScore();
+
         if (endLevelPanel != null)
         {
             endLevelPanel.gameObject.SetActive(true);
@@ -112,13 +131,20 @@ public class LevelManager : MonoBehaviour
 
         }
     }
+
+    private void AddScore()
+    {
+
+        PlayerData lastPlayerData = lastPlayer.GetComponent<PlayerData>();
+        ScoreManager.instance.AddScore(lastPlayerData.playerID, 1);
+    }
     #endregion
 
-    public void DestroyPlayer(Transform player)
+    public void DestroyPlayer(PlayerData player)
     {
-        if (currentPlayers.Contains(player))
+        if (currentPlayers.Contains(player.transform))
         {
-            currentPlayers.Remove(player);
+            currentPlayers.Remove(player.transform);
             Destroy(player.gameObject, 2f);
         }
     }

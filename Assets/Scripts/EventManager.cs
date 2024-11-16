@@ -2,15 +2,34 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public static EventManager instance;
+
+    private LevelManager levelManager;
+    private ScoreManager scoreManager = ScoreManager.instance;
+
+    private void Awake()
     {
-        
+        if(instance != null )
+        {
+            Destroy(this);
+            return;
+        }
+
+        instance = this;
+        levelManager = FindAnyObjectByType<LevelManager>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnPlayerDie(PlayerData player)
     {
-        
+        if( levelManager != null )
+        {
+            levelManager.DestroyPlayer(player);
+        }
+
+        if(scoreManager != null)
+        {
+            
+        }
+
     }
 }

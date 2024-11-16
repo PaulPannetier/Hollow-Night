@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
-    public int playerID;
+    public PlayerID playerID;
     public int nbKill;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -15,4 +15,11 @@ public class PlayerData : MonoBehaviour
     {
         
     }
+}
+
+public enum PlayerID{
+    Player1,
+    Player2,
+    Player3,
+    Player4
 }
