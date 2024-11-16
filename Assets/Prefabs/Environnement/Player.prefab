@@ -187,6 +187,7 @@ GameObject:
   - component: {fileID: 2357763605954445173}
   - component: {fileID: 3904826450736309284}
   - component: {fileID: 5039652864819706456}
+  - component: {fileID: 1855303591012539495}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -408,6 +409,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   torchLight: {fileID: 2635625428874490624}
   spottedLight: {fileID: 3996662569235969192}
+--- !u!114 &1855303591012539495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7030187534923222893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: accaed2ceee98d045892b2ab742e4049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerID: 0
+  nbKill: 0
 --- !u!1 &7089883570896007701
 GameObject:
   m_ObjectHideFlags: 0
