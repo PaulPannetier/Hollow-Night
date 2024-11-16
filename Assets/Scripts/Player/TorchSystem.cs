@@ -13,7 +13,8 @@ public class TorchSystem : MonoBehaviour
     private float lightRange => torchLight.range;
     private float coneAngle => torchLight.spotAngle;
     private List<EnemiData> enemies;
-    private LayerMask playerAndWallMask;
+    private HashSet<LightInteractable> lightInteractables;
+    private LayerMask playerAndWallMask, lightInteractableMask;
 
     [SerializeField] private Light torchLight;
     [SerializeField] private Light spottedLight;
@@ -24,8 +25,10 @@ public class TorchSystem : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
         playerAndWallMask = LayerMask.GetMask("Map", "Player");
+        lightInteractableMask = LayerMask.GetMask("LightInteractable");
         enemies = new List<EnemiData>(4);
         playerData = GetComponent<PlayerData>();
+        lightInteractables = new HashSet<LightInteractable>();
     }
 
     private void Start()
@@ -42,6 +45,25 @@ public class TorchSystem : MonoBehaviour
             {
                 torchLight.enabled = true;
                 spottedLight.enabled = true;
+
+                HashSet<LightInteractable> lightInteractables = GetLightInteractable();
+                foreach (LightInteractable ligthInter in lightInteractables)
+                {
+                    if(!this.lightInteractables.Contains(ligthInter))
+                    {
+                        ligthInter.BeginInteract(gameObject);
+                    }
+                }
+
+                foreach (LightInteractable ligthInter in this.lightInteractables)
+                {
+                    if (!lightInteractables.Contains(ligthInter))
+                    {
+                        ligthInter.EndInteract(gameObject);
+                    }
+                }
+
+                this.lightInteractables = lightInteractables;
 
                 List<Collider> cols = GetPlayerInTorch();
                 bool[] found = new bool[enemies.Count];
@@ -135,6 +157,37 @@ public class TorchSystem : MonoBehaviour
 
         List<Collider> res = new List<Collider>(cols);
         return res;
+    }
+
+    private HashSet<LightInteractable> GetLightInteractable()
+    {
+        RaycastHit[] hits = new RaycastHit[rayCount];
+
+        float angleStep = (Mathf.PI * 2f) / (rayCount - 1);
+        float radius = Mathf.Tan(coneAngle) * lightRange;
+        Vector3 center = torchLight.transform.position + torchLight.transform.forward * lightRange;
+
+        for (int i = 0; i < rayCount - 1; i++)
+        {
+            float angle = i * angleStep;
+            float x = radius * Mathf.Cos(angle);
+            float y = radius * Mathf.Sin(angle);
+            Vector3 offset = x * torchLight.transform.right + y * torchLight.transform.up;
+            Vector3 rayDirection = ((center + offset) - torchLight.transform.position).normalized;
+
+            Physics.Raycast(torchLight.transform.position, rayDirection, out hits[i], lightRange, lightInteractableMask);
+        }
+
+        HashSet<LightInteractable> lightInteractables = new HashSet<LightInteractable>(hits.Length);
+        for (int i = 0; i < hits.Length; i++)
+        {
+            if(hits[i].collider != null)
+            {
+                lightInteractables.Add(hits[i].collider.GetComponent<LightInteractable>());
+            }
+        }
+
+        return lightInteractables;
     }
 
     #region OnValidate/Gizmos

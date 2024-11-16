@@ -173,7 +173,7 @@ public class LevelManager : MonoBehaviour
         {
             print("oui");
             currentPlayers.Remove(playerWhoDied);
-            Destroy(playerWhoDied.gameObject, 2f);
+            Destroy(playerWhoDied.gameObject, 0f);
         }
 
         killer.nbKill++;
