@@ -50,6 +50,7 @@ public class Halo : MonoBehaviour
                     playerData.hat = gameObject;
                     isInHead = true;
                     timePutOnHead = Time.time;
+                    AudioManager.instance.PlaySound("ActiveLamp", 1f);
                     break;
                 }
             }

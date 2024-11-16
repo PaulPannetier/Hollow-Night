@@ -699,6 +699,7 @@ MonoBehaviour:
   lightSpeedVariation: 5
   dayIntensity: 1
   nightIntensity: 0
+  musicName: Tuto
   isNight: 0
   isLevelRunning: 0
 --- !u!4 &259226612

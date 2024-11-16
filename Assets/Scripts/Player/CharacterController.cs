@@ -77,6 +77,8 @@ public class CharacterController : MonoBehaviour
 
         //print(currentAngle);
         rb.rotation = Quaternion.Euler(0f, -currentAngle, 0f);
+
+        print(slopeAngle);
     }
 
     private void UpdateState()

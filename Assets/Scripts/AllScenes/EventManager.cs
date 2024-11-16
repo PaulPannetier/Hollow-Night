@@ -92,6 +92,7 @@ public class EventManager : MonoBehaviour
 
     public void LoadScene(string scene)
     {
+        AudioManager.instance.StopAllSound();
         SceneManager.LoadScene(scene);
     }
 
