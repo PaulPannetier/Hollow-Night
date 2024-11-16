@@ -3337,6 +3337,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 76298562}
     - target: {fileID: 1831558001417331926, guid: f400bfeb68b2df64680102aa86f54ecc, type: 3}
+      propertyPath: musicName
+      value: Level3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1831558001417331926, guid: f400bfeb68b2df64680102aa86f54ecc, type: 3}
       propertyPath: endLevelPanel
       value: 
       objectReference: {fileID: 946458584}
