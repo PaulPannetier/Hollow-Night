@@ -17,11 +17,12 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private List<Transform> currentPlayers = new List<Transform>();
     private Transform lastPlayer;
-    private ScoreManager scoreManager;
 
     [Header("EndLevelUI")]
     [SerializeField] private Transform endLevelPanel;
     [SerializeField] private TextMeshProUGUI winnerNameText;
+    [SerializeField] private GameObject endLevelFx;
+    [SerializeField] private Transform[] fxPoints;
 
 
     [Header("Lumiere")]
@@ -41,7 +42,7 @@ public class LevelManager : MonoBehaviour
     public bool isNight;
     private bool isFirstDay;
 
-
+    public bool isLevelRunning = false;
     private bool Error => players.Count() > spawnPoints.Count();
 
 
@@ -64,22 +65,24 @@ public class LevelManager : MonoBehaviour
 
     void Update()
     {
-        if (CheckEndGame())
+        if (isLevelRunning && CheckEndGame())
         {
             EndGame();
         }
 
         UpdateLight();
+
+
     }
 
     #region Initialise Game
     private void InitialiseGame()
     {
-        Time.timeScale = 1;
+        isLevelRunning = true;
         lastPlayer = null;
         endLevelPanel.gameObject.SetActive(false);
 
-        scoreManager = FindAnyObjectByType<ScoreManager>();
+
         InstantiatePlayers();
         SetFirstDay();
     }
@@ -117,7 +120,7 @@ public class LevelManager : MonoBehaviour
 
     private void EndGame()
     {
-        Time.timeScale = 0;
+        isLevelRunning = false;
 
         AddScore();
 
@@ -126,10 +129,13 @@ public class LevelManager : MonoBehaviour
             endLevelPanel.gameObject.SetActive(true);
 
             if (lastPlayer != null && winnerNameText != null)
-                winnerNameText.text = lastPlayer.name;
+                winnerNameText.text = "Le Vainqueur est :\n" + lastPlayer.GetComponent<PlayerData>().playerID;
 
 
         }
+
+        CheckEndLevelFx();
+
     }
 
     private void AddScore()
@@ -149,6 +155,39 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    private void CheckEndLevelFx()
+    {
+        if (fxPoints.Count() > 0 && !isLevelRunning)
+        {
+            StartCoroutine(InstantiateEndLevelFx());
+        }
+    }
+
+    private IEnumerator InstantiateEndLevelFx()
+    {
+        
+            Instantiate(endLevelFx, fxPoints[Random.Rand(0, fxPoints.Count() - 1)]);
+            yield return new WaitForSeconds(1);
+            Instantiate(endLevelFx, fxPoints[Random.Rand(0, fxPoints.Count() - 1)]);
+            yield return new WaitForSeconds(1);
+            Instantiate(endLevelFx, fxPoints[Random.Rand(0, fxPoints.Count() - 1)]);
+            yield return new WaitForSeconds(1);
+            Instantiate(endLevelFx, fxPoints[Random.Rand(0, fxPoints.Count() - 1)]);
+            yield return new WaitForSeconds(1);
+            Instantiate(endLevelFx, fxPoints[Random.Rand(0, fxPoints.Count() - 1)]);
+            yield return new WaitForSeconds(1);
+            Instantiate(endLevelFx, fxPoints[Random.Rand(0, fxPoints.Count() - 1)]);
+            yield return new WaitForSeconds(1);
+            Instantiate(endLevelFx, fxPoints[Random.Rand(0, fxPoints.Count() - 1)]);
+            yield return new WaitForSeconds(1);
+            Instantiate(endLevelFx, fxPoints[Random.Rand(0, fxPoints.Count() - 1)]);
+            yield return new WaitForSeconds(1);
+            Instantiate(endLevelFx, fxPoints[Random.Rand(0, fxPoints.Count() - 1)]);
+            yield return new WaitForSeconds(1);
+            Instantiate(endLevelFx, fxPoints[Random.Rand(0, fxPoints.Count() - 1)]);
+            yield return new WaitForSeconds(1);
+            Instantiate(endLevelFx, fxPoints[Random.Rand(0, fxPoints.Count() - 1)]);        
+    }
     public void LoadScene(string scene)
     {
         SceneManager.LoadScene(scene);

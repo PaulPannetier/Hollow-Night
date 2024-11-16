@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -10,9 +11,10 @@ public class ScoreManager : MonoBehaviour
 
     [Header("Score")]
     [SerializeField] private List<ScoreData> scoreDatas = new List<ScoreData>();
-    [SerializeField] private Transform ScorePanel;
+    [SerializeField] private GameObject ScoreCanva;
     [SerializeField] private TextMeshProUGUI scoreTextPrefab;
 
+    private GameObject currentScorePanel;
 
     private void Awake()
     {
@@ -53,28 +55,28 @@ public class ScoreManager : MonoBehaviour
 
     public void DisplayScorePanel()
     {
-        ScorePanel.gameObject.SetActive(true);
+        currentScorePanel = Instantiate(ScoreCanva, transform);
+        GetComponentInChildren<Button>().onClick.AddListener(HideScorePanel);
         UpdateScorePanel();
     }
 
     public void HideScorePanel()
     {
-        ScorePanel.gameObject.SetActive(false);
+        if (currentScorePanel != null)
+        {
+            Destroy(currentScorePanel);
+        }
     }
 
     private void UpdateScorePanel()
     {
-        foreach (Transform scoreText in ScorePanel.transform)
-        {
-            Destroy(scoreText.gameObject);
-        }
 
         for (int i = 0; i < nbPlayer; i++)
         {
-            var scoreText = Instantiate(scoreTextPrefab, ScorePanel.position, ScorePanel.rotation, ScorePanel);
+            var scoreText = Instantiate(scoreTextPrefab, currentScorePanel.GetComponentInChildren<HorizontalLayoutGroup>().transform);
             if (scoreText != null)
             {
-                scoreText.text = scoreDatas[i].score.ToString();
+                scoreText.text = "   " + scoreDatas[i].playerID.ToString() + "   " + "\n" + scoreDatas[i].score.ToString();
             }
             else
             {
