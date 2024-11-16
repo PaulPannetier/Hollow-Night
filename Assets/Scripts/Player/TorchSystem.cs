@@ -10,11 +10,13 @@ public class TorchSystem : MonoBehaviour
     private PlayerInput playerInput;
     private PlayerData playerData;
     private bool isNight => LevelManager.instance.isNight;
-    private float lightRange => torchLight.range;
-    private float coneAngle => torchLight.spotAngle;
+    private float lightRange => isPuttingAHat ? 2f * torchLight.range : torchLight.range;
+    private float coneAngle => isPuttingAHat ? 1.5f * torchLight.spotAngle : torchLight.spotAngle;
     private List<EnemiData> enemies;
     private HashSet<LightInteractable> lightInteractables;
     private LayerMask playerAndWallMask, lightInteractableMask;
+    private bool isPuttingAHat;
+    private float baseTorchLightIntensity, baseTorchSpotAngle;
 
     [SerializeField] private Light torchLight;
     [SerializeField] private Light spottedLight;
@@ -35,6 +37,8 @@ public class TorchSystem : MonoBehaviour
     {
         torchLight.enabled = false;
         spottedLight.enabled = false;
+        baseTorchLightIntensity = torchLight.intensity;
+        baseTorchSpotAngle = torchLight.spotAngle;
     }
 
     private void Update()
@@ -121,6 +125,20 @@ public class TorchSystem : MonoBehaviour
         }
     }
 
+    public void OnPutHat()
+    {
+        isPuttingAHat = true;
+        torchLight.intensity = 3f * baseTorchLightIntensity;
+        torchLight.spotAngle = 1.5f * baseTorchSpotAngle;
+    }
+
+    public void OnRealeaseHat()
+    {
+        isPuttingAHat = false;
+        torchLight.intensity = baseTorchLightIntensity;
+        torchLight.spotAngle = baseTorchSpotAngle;
+    }
+
     private void StopTorch()
     {
         torchLight.enabled = false;
@@ -159,7 +177,7 @@ public class TorchSystem : MonoBehaviour
 
         for (int i = 0; i < rayCount; i++)
         {
-            if(hits[i].collider != null && hits[i].collider.CompareTag("Player"))
+            if(hits[i].collider != null && hits[i].collider.CompareTag("Player") && hits[i].collider.gameObject != gameObject)
             {
                 cols.Add(hits[i].collider);
             }
