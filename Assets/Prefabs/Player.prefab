@@ -284,7 +284,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &2357763605954445173
 MonoBehaviour:
@@ -298,7 +298,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4a8e51e742178d4c82dcc566c6b5061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useGamepad: 0
   upInput:
     keysKeyboard: 77000000
     keyGamepad1: 00000000
@@ -365,6 +364,13 @@ MonoBehaviour:
   walkInitSpeed: 0.3
   rotationSpeed: 360
   maxAngleTurn: 50
+  maxSlopeAngle: 0
+  slopeMaxSpeed:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &5039652864819706456
 MonoBehaviour:
   m_ObjectHideFlags: 0

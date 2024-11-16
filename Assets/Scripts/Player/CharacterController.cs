@@ -9,6 +9,7 @@ public class CharacterController : MonoBehaviour
     private LayerMask mapsMask;
     private new Transform transform;
     private RaycastHit groundRaycast;
+    private float slopeAngle;
 
     [Header("Walk")]
     [SerializeField] private float walkSpeed;
@@ -20,6 +21,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private float rotationSpeed;
     [SerializeField, Range(0f, 180f)] private float maxAngleTurn;
     [SerializeField, Range(0f, 90f)] private float maxSlopeAngle;
+    [SerializeField] private AnimationCurve slopeMaxSpeed;
 
     private void Awake()
     {
@@ -35,14 +37,25 @@ public class CharacterController : MonoBehaviour
 
         HandleWalk();
 
-        HandleSlope();
+        Vector3 vel = new Vector3(velocity.x, 0f, velocity.y);
 
-        rb.linearVelocity = new Vector3(velocity.x, 0f, velocity.y);
+        rb.linearVelocity = vel;
+        print(slopeAngle * Mathf.Rad2Deg);
     }
 
     private void UpdateState()
     {
-        Physics.Raycast(transform.position, Vector3.down, out RaycastHit raycast, float.MaxValue, mapsMask);
+        Physics.Raycast(transform.position, Vector3.down, out groundRaycast, float.MaxValue, mapsMask);
+
+        if (groundRaycast.collider != null)
+        {
+            slopeAngle = Useful.WrapAngle((Vector3.Angle(velocity, groundRaycast.normal) - 90f) * Mathf.Deg2Rad);
+        }
+        else
+        {
+            Debug.LogWarning("Ground raycast is null!");
+            slopeAngle = 0f;
+        }
     }
 
     #region Walk
@@ -82,20 +95,6 @@ public class CharacterController : MonoBehaviour
         newSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed * input.magnitude, delta * Time.fixedDeltaTime);
 
         velocity = Useful.Vector2FromAngle(newAngle * Mathf.Deg2Rad, newSpeed);
-    }
-
-    #endregion
-
-    #region Slode
-
-    private void HandleSlope()
-    {
-        //if()
-        //{
-        //    float slopeAngleRight = Useful.WrapAngle((Vector2.Angle(Vector2.right, raycast.normal) - 90f) * Mathf.Deg2Rad);
-
-        //}
-
     }
 
     #endregion
