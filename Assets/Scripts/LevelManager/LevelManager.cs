@@ -148,11 +148,16 @@ public class LevelManager : MonoBehaviour
 
     public void DestroyPlayer(PlayerData player)
     {
-        if (currentPlayers.Contains(player.transform))
+        foreach (Transform playerTransform in currentPlayers)
         {
-            currentPlayers.Remove(player.transform);
+            if(playerTransform.GetComponent<PlayerData>().playerID == player.playerID)
+            {
+                
+            currentPlayers.Remove(playerTransform);
             Destroy(player.gameObject, 2f);
+            }
         }
+
     }
 
     private void CheckEndLevelFx()
