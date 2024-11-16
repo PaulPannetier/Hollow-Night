@@ -680,6 +680,8 @@ MonoBehaviour:
   levelList:
   - Level 1
   - Level 2
+  - Level 3
+  - Level 4
 --- !u!4 &508056026
 Transform:
   m_ObjectHideFlags: 0

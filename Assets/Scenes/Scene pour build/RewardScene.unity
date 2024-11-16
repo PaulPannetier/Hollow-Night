@@ -680,7 +680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12df1ae96e81dbf429c8b922314caa0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuScene: MenuScene
+  menuScene: Credit
   killerPanel: {fileID: 1337248724}
   killerText: {fileID: 857959033}
   poulpePanel: {fileID: 1525916734}

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -7,9 +8,9 @@ public class StarWarsCredits : MonoBehaviour
 {
     [SerializeField] private RectTransform creditsText; // Référence au texte des crédits
     [SerializeField] private float scrollSpeed = 50f; // Vitesse de défilement
-    [SerializeField] private float resetDelay = 5f; // Temps avant de recommencer (optionnel)
+    [SerializeField] private float resetDelay = 5f;
+    [SerializeField] private string menuScene = "MenuScene";
 
-    private Vector3 initialPosition; // Position initiale du texte
 
     void Start()
     {
@@ -19,8 +20,6 @@ public class StarWarsCredits : MonoBehaviour
             return;
         }
 
-        // Enregistrer la position initiale
-        initialPosition = creditsText.localPosition;
     }
 
     void Update()
@@ -41,6 +40,6 @@ public class StarWarsCredits : MonoBehaviour
     private IEnumerator ResetCredits()
     {
         yield return new WaitForSeconds(resetDelay);
-        creditsText.localPosition = initialPosition;
+        SceneManager.LoadScene(menuScene);
     }
 }
