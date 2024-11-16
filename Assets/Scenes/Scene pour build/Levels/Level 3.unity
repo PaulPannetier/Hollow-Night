@@ -333,7 +333,6 @@ Transform:
   m_Children:
   - {fileID: 793190722}
   - {fileID: 1322350579}
-  - {fileID: 890824012}
   - {fileID: 76298563}
   - {fileID: 501807203}
   - {fileID: 1571957137}
@@ -2089,7 +2088,6 @@ GameObject:
   m_Component:
   - component: {fileID: 890824012}
   - component: {fileID: 890824011}
-  - component: {fileID: 890824010}
   - component: {fileID: 890824013}
   m_Layer: 0
   m_Name: Main Camera
@@ -2098,14 +2096,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &890824010
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 890824009}
-  m_Enabled: 1
 --- !u!20 &890824011
 Camera:
   m_ObjectHideFlags: 0
@@ -2166,11 +2156,11 @@ Transform:
   m_GameObject: {fileID: 890824009}
   serializedVersion: 2
   m_LocalRotation: {x: -0.4870003, y: -0.0055045895, z: 0.0030702332, w: -0.8733791}
-  m_LocalPosition: {x: 0.75, y: 14.55, z: -10.49}
+  m_LocalPosition: {x: 0.75, y: 14.6, z: -10.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 139911684}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 58.288, y: 0.722, z: 0}
 --- !u!114 &890824013
 MonoBehaviour:
@@ -3346,6 +3336,10 @@ PrefabInstance:
       propertyPath: dayLight
       value: 
       objectReference: {fileID: 76298562}
+    - target: {fileID: 1831558001417331926, guid: f400bfeb68b2df64680102aa86f54ecc, type: 3}
+      propertyPath: musicName
+      value: Level3
+      objectReference: {fileID: 0}
     - target: {fileID: 1831558001417331926, guid: f400bfeb68b2df64680102aa86f54ecc, type: 3}
       propertyPath: endLevelPanel
       value: 
@@ -4614,9 +4608,10 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 343918177}
+  - {fileID: 890824012}
+  - {fileID: 1894774019}
   - {fileID: 139911684}
   - {fileID: 1381194094}
   - {fileID: 509613200}
   - {fileID: 1496342686}
   - {fileID: 1777470896}
-  - {fileID: 1894774019}

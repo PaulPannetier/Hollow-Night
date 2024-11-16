@@ -185,6 +185,9 @@ public class LevelManager : MonoBehaviour
             Destroy(playerWhoDied.gameObject, 0f);
         }
 
+        string[] sounds = new string[3] { "PlayerDie1", "PlayerDie2", "PlayerDie3" };
+        AudioManager.instance.PlaySound(sounds.GetRandom(), 1f);
+
         killer.nbKill++;
         ScoreManager.instance.AddKillToScore(killer.playerID);
     }

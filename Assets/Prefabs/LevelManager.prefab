@@ -174,15 +174,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   players:
-  - {fileID: 7030187534923222893, guid: c12bc35de70bc564288ff0aaea113c99, type: 3}
-  - {fileID: 7030187534923222893, guid: c12bc35de70bc564288ff0aaea113c99, type: 3}
-  - {fileID: 7030187534923222893, guid: c12bc35de70bc564288ff0aaea113c99, type: 3}
-  - {fileID: 7030187534923222893, guid: c12bc35de70bc564288ff0aaea113c99, type: 3}
+  - {fileID: 7030187534923222893, guid: d20c8b3df893c2c4f8133550ade5f7ea, type: 3}
+  - {fileID: 7030187534923222893, guid: d20c8b3df893c2c4f8133550ade5f7ea, type: 3}
+  - {fileID: 7030187534923222893, guid: d20c8b3df893c2c4f8133550ade5f7ea, type: 3}
+  - {fileID: 7030187534923222893, guid: d20c8b3df893c2c4f8133550ade5f7ea, type: 3}
   spawnPoints:
   - {fileID: 724735972669580844}
   - {fileID: 2958698273952313580}
   - {fileID: 8475450789644299673}
   - {fileID: 7107117283251013099}
+  playerDeathFx: {fileID: 100004, guid: 7867af58a6ec48846ae807eb4022fbaa, type: 3}
   currentPlayers: []
   endLevelPanel: {fileID: 0}
   winnerNameText: {fileID: 0}
@@ -197,6 +198,7 @@ MonoBehaviour:
   lightSpeedVariation: 5
   dayIntensity: 1
   nightIntensity: 0
+  musicName: 
   isNight: 0
   isLevelRunning: 0
 --- !u!1 &9161559540355879249
