@@ -553,6 +553,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224019519242929323}
   - component: {fileID: 1831558001417331926}
+  - component: {fileID: 1052214380945397061}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -616,6 +617,14 @@ MonoBehaviour:
   nightIntensity: 0
   isNight: 0
   isLevelRunning: 0
+--- !u!81 &1052214380945397061
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8788612546701226175}
+  m_Enabled: 1
 --- !u!1 &8844725168915279591
 GameObject:
   m_ObjectHideFlags: 0
