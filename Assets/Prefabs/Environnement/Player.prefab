@@ -343,19 +343,57 @@ MonoBehaviour:
   rotationSpeed: 360
   maxAngleTurn: 50
   maxSlopeAngle: 45
-  slopeSpeedUp:
+  slopeUpSpeedMultiplier:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -0.49934387
+      outSlope: -0.49934387
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0.5006561
+      inSlope: -0.49934387
+      outSlope: -0.49934387
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  slopeSpeedDown:
+  slopeDownSpeedMultiplier:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0.49910292
+      outSlope: 0.49910292
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.0019641
+      value: 1.5000832
+      inSlope: 0.49910292
+      outSlope: 0.49910292
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  distanceFromGround: 0
+  fallSpeed: 0
+  fallDecelerationSpeedLerp: 0
+  fallSpeedLerp: 0
 --- !u!114 &5039652864819706456
 MonoBehaviour:
   m_ObjectHideFlags: 0

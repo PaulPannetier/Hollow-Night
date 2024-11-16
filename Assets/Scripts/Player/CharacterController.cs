@@ -1,3 +1,4 @@
+using UnityEditor.Rendering;
 using UnityEngine;
 
 [RequireComponent (typeof(Rigidbody))]
@@ -30,8 +31,13 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private float rotationSpeed;
     [SerializeField, Range(0f, 180f)] private float maxAngleTurn;
     [SerializeField, Range(0f, 90f)] private float maxSlopeAngle;
-    [SerializeField] private AnimationCurve slopeSpeedUp;
-    [SerializeField] private AnimationCurve slopeSpeedDown;
+    [SerializeField] private AnimationCurve slopeUpSpeedMultiplier;
+    [SerializeField] private AnimationCurve slopeDownSpeedMultiplier;
+
+    [Header("Fall")]
+    [SerializeField] private float fallSpeed;
+    [SerializeField] private float fallDecelerationSpeedLerp;
+    [SerializeField] private float fallSpeedLerp;
 
     private void Awake()
     {
@@ -52,11 +58,11 @@ public class CharacterController : MonoBehaviour
 
         HandleWalk();
 
+        HandleFall();
+
         rb.linearVelocity = velocity;
 
         rb.rotation = Quaternion.Euler(0f, -currentAngle, 0f);
-
-        print(currentAngle);
     }
 
     private void UpdateState()
@@ -67,7 +73,7 @@ public class CharacterController : MonoBehaviour
 
         if (groundRaycast.collider != null)
         {
-            Vector3 currentSpeed = velocity.sqrMagnitude > 1e-3f ? new Vector3(velocity.x, 0f, velocity.y) : transform.forward;
+            Vector3 currentSpeed = velocity.sqrMagnitude > 1e-3f ? new Vector3(velocity.x, 0f, velocity.z) : transform.forward;
             slopeAngle = Useful.WrapAngle((Vector3.Angle(groundRaycast.normal, currentSpeed) - 90f) * Mathf.Deg2Rad) * Mathf.Rad2Deg;
             slopeAngle = slopeAngle > 90f ? slopeAngle - 360f : slopeAngle;
         }
@@ -98,7 +104,9 @@ public class CharacterController : MonoBehaviour
         }
 
         float currentSpeed = velocity.magnitude;
-        float targetSpeed = playerInput.isSprintPressed ? sprintSpeed : walkSpeed;
+        float slopePercent = Mathf.Abs(slopeAngle) / maxSlopeAngle;
+        float speedCoeff = slopeAngle > 0f ? slopeUpSpeedMultiplier.Evaluate(slopePercent) : slopeDownSpeedMultiplier.Evaluate(slopePercent);
+        float targetSpeed = (playerInput.isSprintPressed ? sprintSpeed : walkSpeed) * speedCoeff;
 
         if (playerInput.rawX == 0 && playerInput.rawY == 0)
         {
@@ -130,7 +138,9 @@ public class CharacterController : MonoBehaviour
         if (isGrounded)
             return;
 
-
+        velocity = new Vector3(Mathf.MoveTowards(velocity.x, 0f, fallDecelerationSpeedLerp * Time.fixedDeltaTime),
+            Mathf.MoveTowards(velocity.y, -fallSpeed, fallSpeedLerp * Time.fixedDeltaTime),
+            Mathf.MoveTowards(velocity.z, 0f, fallDecelerationSpeedLerp * Time.fixedDeltaTime));
     }
 
     #endregion
@@ -159,6 +169,9 @@ public class CharacterController : MonoBehaviour
         sprintSpeedLerp = Mathf.Max(sprintSpeedLerp, 0f);
         walkDecelerationSpeedLerp = Mathf.Max(walkDecelerationSpeedLerp, 0f);
         rotationSpeed = Mathf.Max(rotationSpeed, 0f);
+        fallSpeed = Mathf.Max(fallSpeed, 0f);
+        fallDecelerationSpeedLerp = Mathf.Max(fallDecelerationSpeedLerp, 0f);
+        fallSpeedLerp = Mathf.Max(fallSpeedLerp, 0f);
     }
 
 #endif
