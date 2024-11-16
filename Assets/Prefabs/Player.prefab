@@ -304,7 +304,7 @@ MonoBehaviour:
     keyGamepad4: 
     controllerType: 0
   sprintInput:
-    keysKeyboard: 2f010000
+    keysKeyboard: 30010000
     keyGamepad1: 54010000
     keyGamepad2: 5e010000
     keyGamepad3: 68010000
@@ -333,8 +333,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79e38260a8434dc4999a5bbc2d0d8e62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drawGizmos: 1
-  groundCastLength: 1.64
+  drawGizmos: 0
+  groundCastLength: 0.6
   walkSpeed: 1
   walkSpeedLerp: 20
   walkDecelerationSpeedLerp: 30
@@ -392,9 +392,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  fallSpeed: 0
-  fallDecelerationSpeedLerp: 0
-  fallSpeedLerp: 0
+  fallSpeed: 10
+  fallDecelerationSpeedLerp: 1
+  fallSpeedLerp: 10
 --- !u!114 &5039652864819706456
 MonoBehaviour:
   m_ObjectHideFlags: 0
