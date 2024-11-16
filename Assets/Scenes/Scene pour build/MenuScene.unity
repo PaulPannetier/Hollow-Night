@@ -783,7 +783,7 @@ MonoBehaviour:
     soundEffect: 1
   - name: TakeHalo
     audioClip: {fileID: 8300000, guid: 020f0863a4af2774fb95c1573a6023db, type: 3}
-    volume: 1
+    volume: 0.5
     pitch: 1
     loop: 0
     soundEffect: 1
@@ -821,7 +821,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &819626746
 RectTransform:
   m_ObjectHideFlags: 0
