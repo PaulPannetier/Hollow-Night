@@ -334,7 +334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drawGizmos: 1
-  groundCastLength: 0.6
+  groundCastLength: 1.64
   walkSpeed: 1
   walkSpeedLerp: 20
   walkDecelerationSpeedLerp: 30
