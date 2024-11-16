@@ -25,7 +25,7 @@ public class TorchSystem : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
         playerAndWallMask = LayerMask.GetMask("Map", "Player");
-        lightInteractableMask = LayerMask.GetMask("LightInteractable");
+        lightInteractableMask = LayerMask.GetMask("LightInteractable", "Map");
         enemies = new List<EnemiData>(4);
         playerData = GetComponent<PlayerData>();
         lightInteractables = new HashSet<LightInteractable>();
@@ -62,6 +62,7 @@ public class TorchSystem : MonoBehaviour
                         ligthInter.EndInteract(gameObject);
                     }
                 }
+                this.lightInteractables.Clear();
 
                 this.lightInteractables = lightInteractables;
 
@@ -111,17 +112,26 @@ public class TorchSystem : MonoBehaviour
             }
             else if (playerInput.isTorchUp)
             {
-                torchLight.enabled = false;
-                spottedLight.enabled = false;
-                enemies.Clear();
+                StopTorch();
             }
         }
         else
         {
-            torchLight.enabled = false;
-            spottedLight.enabled = false;
-            enemies.Clear();
+            StopTorch();
         }
+    }
+
+    private void StopTorch()
+    {
+        torchLight.enabled = false;
+        spottedLight.enabled = false;
+        enemies.Clear();
+
+        foreach (LightInteractable li in lightInteractables)
+        {
+            li.EndInteract(gameObject);
+        }
+        lightInteractables.Clear();
     }
 
     private List<Collider> GetPlayerInTorch()
@@ -181,7 +191,7 @@ public class TorchSystem : MonoBehaviour
         HashSet<LightInteractable> lightInteractables = new HashSet<LightInteractable>(hits.Length);
         for (int i = 0; i < hits.Length; i++)
         {
-            if(hits[i].collider != null)
+            if(hits[i].collider != null && hits[i].collider.gameObject.layer == LayerMask.GetMask("LightInteractable"))
             {
                 lightInteractables.Add(hits[i].collider.GetComponent<LightInteractable>());
             }
