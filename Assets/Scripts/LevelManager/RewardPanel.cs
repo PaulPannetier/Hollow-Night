@@ -1,11 +1,20 @@
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class RewardPanel : MonoBehaviour
 {
     [SerializeField] private Transform killerPanel;
+    [SerializeField] private TextMeshProUGUI killerPlayer;
+    [SerializeField] private Transform killerName; // to do 
     [SerializeField] private Transform poulpePanel;
+    [SerializeField] private TextMeshProUGUI poulpePlayer;
     [SerializeField] private Transform survivorPanel;
+    [SerializeField] private TextMeshProUGUI survivorPlayer;
     [SerializeField] private Transform PoissonGlobePanel;
+    [SerializeField] private TextMeshProUGUI poissonPlayer;
+
+    [SerializeField] private List<ScoreData> scoreDatas = new List<ScoreData>();
 
     private enum PanelState
     {
@@ -20,6 +29,7 @@ public class RewardPanel : MonoBehaviour
 
     void Start()
     {
+        scoreDatas = ScoreManager.instance.scoreDatas;
         SwitchPanel(PanelState.None);
     }
 
@@ -85,5 +95,6 @@ public class RewardPanel : MonoBehaviour
         killerPanel.gameObject.SetActive(false);
         poulpePanel.gameObject.SetActive(false);
         survivorPanel.gameObject.SetActive(false);
+        PoissonGlobePanel.gameObject.SetActive(false);
     }
 }

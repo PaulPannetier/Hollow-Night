@@ -10,7 +10,6 @@ public class EventManager : MonoBehaviour
     public static EventManager instance;
 
 
-
     [Header("LevelData")]
     [SerializeField] private string rewardScene = "RewardScene";
     [SerializeField] private string menuScene = "MenuScene";

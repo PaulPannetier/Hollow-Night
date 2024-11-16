@@ -9,7 +9,7 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private int nbPlayer = 4;
 
     [Header("Score")]
-    [SerializeField] private List<ScoreData> scoreDatas = new List<ScoreData>();
+    [SerializeField] public List<ScoreData> scoreDatas = new List<ScoreData>();
     [SerializeField] private GameObject ScoreCanva;
     [SerializeField] private TextMeshProUGUI scoreTextPrefab;
 
