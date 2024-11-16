@@ -97,7 +97,6 @@ GameObject:
   - component: {fileID: 3863874825797312487}
   - component: {fileID: 575482993717079276}
   - component: {fileID: 1906933414855453528}
-  - component: {fileID: 135865432356455352}
   m_Layer: 3
   m_Name: Torch
   m_TagString: Untagged
@@ -113,14 +112,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5269156202773526311}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.229, y: -0, z: 0.29}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: 0.229, y: -0, z: -0.225}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6371519771240521816}
   m_Father: {fileID: 7337283893686204796}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
 --- !u!33 &575482993717079276
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -174,29 +173,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &135865432356455352
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5269156202773526311}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &7030187534923222893
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,6 +333,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79e38260a8434dc4999a5bbc2d0d8e62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drawGizmos: 1
+  groundRaycastLength: 0.6
   walkSpeed: 1
   walkSpeedLerp: 20
   walkDecelerationSpeedLerp: 30
@@ -365,7 +343,7 @@ MonoBehaviour:
   walkInitSpeed: 0.3
   rotationSpeed: 360
   maxAngleTurn: 50
-  maxSlopeAngle: 0
+  maxSlopeAngle: 45
   slopeSpeedUp:
     serializedVersion: 2
     m_Curve: []
@@ -378,6 +356,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  distanceFromGround: 0
 --- !u!114 &5039652864819706456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,14 +532,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7441281281784118636}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2959261453340326143}
   m_Father: {fileID: 7337283893686204796}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!33 &8352585716483043704
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -640,13 +619,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8497470466503246458}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7337283893686204796}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
 --- !u!108 &3996662569235969192
 Light:
   m_ObjectHideFlags: 0

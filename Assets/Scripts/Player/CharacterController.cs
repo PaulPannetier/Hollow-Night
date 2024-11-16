@@ -5,12 +5,20 @@ public class CharacterController : MonoBehaviour
 {
     private Rigidbody rb;
     private PlayerInput playerInput;
-    private Vector2 velocity;
+    private Vector3 velocity;
     private LayerMask mapsMask;
     private new Transform transform;
     private RaycastHit groundRaycast;
     private float slopeAngle;
     private float currentAngle;
+    private bool isGrounded => groundRaycast.collider != null;
+
+#if UNITY_EDITOR
+    [SerializeField] private bool drawGizmos;
+#endif
+
+    [Header("Detection")]
+    [SerializeField] private float groundRaycastLength;
 
     [Header("Walk")]
     [SerializeField] private float walkSpeed;
@@ -33,24 +41,29 @@ public class CharacterController : MonoBehaviour
         this.transform = base.transform;
     }
 
+    private void Start()
+    {
+        currentAngle = Vector3.Angle(transform.forward, Vector3.right);
+    }
+
     private void FixedUpdate()
     {
         UpdateState();
 
         HandleWalk();
 
-        Vector3 vel = new Vector3(velocity.x, 0f, velocity.y);
-
-        rb.linearVelocity = vel;
+        rb.linearVelocity = velocity;
 
         rb.rotation = Quaternion.Euler(0f, -currentAngle, 0f);
+
+        print(currentAngle);
     }
 
     private void UpdateState()
     {
-        currentAngle = Vector2.SignedAngle(Vector2.right, velocity);
+        currentAngle = Vector2.SignedAngle(Vector2.right, new Vector2(velocity.x, velocity.z));
 
-        Physics.Raycast(transform.position, Vector3.down, out groundRaycast, float.MaxValue, mapsMask);
+        Physics.Raycast(transform.position, Vector3.down, out groundRaycast, groundRaycastLength, mapsMask);
 
         if (groundRaycast.collider != null)
         {
@@ -60,7 +73,6 @@ public class CharacterController : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Ground raycast is null!");
             slopeAngle = 0f;
         }
     }
@@ -69,11 +81,8 @@ public class CharacterController : MonoBehaviour
 
     private void HandleWalk()
     {
-        if (playerInput.rawX == 0 && playerInput.rawY == 0)
-        {
-            velocity = Vector2.MoveTowards(velocity, Vector2.zero, walkDecelerationSpeedLerp * Time.fixedDeltaTime);
+        if (!isGrounded)
             return;
-        }
 
         Vector2 input = new Vector2(playerInput.x, playerInput.y);
         float targetAngle = Vector2.SignedAngle(Vector2.right, input);
@@ -90,25 +99,60 @@ public class CharacterController : MonoBehaviour
 
         float currentSpeed = velocity.magnitude;
         float targetSpeed = playerInput.isSprintPressed ? sprintSpeed : walkSpeed;
-        float newSpeed = 0f;
 
+        if (playerInput.rawX == 0 && playerInput.rawY == 0)
+        {
+            targetSpeed = 0f;
+        }
+
+        float newSpeed = 0f;
         if (currentSpeed < walkInitSpeed * targetSpeed)
         {
             newSpeed = walkInitSpeed * targetSpeed * input.magnitude;
         }
 
-        float delta = playerInput.isSprintPressed ? sprintSpeedLerp : walkSpeedLerp;
+        float delta = (playerInput.rawX == 0 && playerInput.rawY == 0) ? walkDecelerationSpeedLerp : 
+            (playerInput.isSprintPressed ? sprintSpeedLerp : walkSpeedLerp);
         newSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed * input.magnitude, delta * Time.fixedDeltaTime);
 
-        velocity = Useful.Vector2FromAngle(newAngle * Mathf.Deg2Rad, newSpeed);
+        Vector2 speed2D = Useful.Vector2FromAngle(newAngle * Mathf.Deg2Rad, newSpeed);
+        Vector3 dir = new Vector3(speed2D.x, 0f, speed2D.y).normalized;
+        dir = new Vector3(dir.x, Mathf.Tan(slopeAngle * Mathf.Deg2Rad), dir.z).normalized;
+        velocity = dir * newSpeed;
     }
 
     #endregion
 
-    #region OnValidate
+    #region Fall
+
+    private void HandleFall()
+    {
+        if (isGrounded)
+            return;
+
+
+    }
+
+    #endregion
+
+    #region Gizmos/OnValidate
+
+#if UNITY_EDITOR
+
+    private void OnDrawGizmosSelected()
+    {
+        if(!drawGizmos)
+            return;
+
+        this.transform = base.transform;
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(transform.position, transform.position + Vector3.down * groundRaycastLength);
+    }
 
     private void OnValidate()
     {
+        this.transform = base.transform;
         walkSpeed = Mathf.Max(walkSpeed, 0f);
         sprintSpeed = Mathf.Max(sprintSpeed, 0f);
         walkSpeedLerp = Mathf.Max(walkSpeedLerp, 0f);
@@ -117,5 +161,7 @@ public class CharacterController : MonoBehaviour
         rotationSpeed = Mathf.Max(rotationSpeed, 0f);
     }
 
-    #endregion
+#endif
+
+#endregion
 }
