@@ -784,7 +784,7 @@ MonoBehaviour:
     soundEffect: 1
   - name: TakeHalo
     audioClip: {fileID: 8300000, guid: 020f0863a4af2774fb95c1573a6023db, type: 3}
-    volume: 0.5
+    volume: 0.2
     pitch: 1
     loop: 0
     soundEffect: 1
@@ -2593,6 +2593,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainsPanel: {fileID: 271884382}
   nbOfLevel: {fileID: 311766740}
+  tutorialName: Tutorial
 --- !u!1 &1824563295
 GameObject:
   m_ObjectHideFlags: 0

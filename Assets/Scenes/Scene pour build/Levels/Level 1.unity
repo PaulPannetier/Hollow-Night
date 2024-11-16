@@ -543,7 +543,6 @@ Transform:
   - {fileID: 1904887392}
   - {fileID: 1322350579}
   - {fileID: 793190722}
-  - {fileID: 890824012}
   - {fileID: 76298563}
   - {fileID: 2032702652}
   - {fileID: 285223891}
@@ -2945,7 +2944,6 @@ GameObject:
   m_Component:
   - component: {fileID: 890824012}
   - component: {fileID: 890824011}
-  - component: {fileID: 890824010}
   - component: {fileID: 890824013}
   m_Layer: 6
   m_Name: Main Camera
@@ -2954,14 +2952,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &890824010
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 890824009}
-  m_Enabled: 1
 --- !u!20 &890824011
 Camera:
   m_ObjectHideFlags: 0
@@ -3021,12 +3011,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 890824009}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.5808796, y: -0.00024616157, z: 0.00016066027, w: -0.8139894}
+  m_LocalRotation: {x: -0.5808796, y: -0.0002461616, z: 0.00016066027, w: -0.81398946}
   m_LocalPosition: {x: 0.018425882, y: 16.220749, z: -7.5920753}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 139911684}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &890824013
 MonoBehaviour:
@@ -7450,6 +7440,7 @@ SceneRoots:
   - {fileID: 2753655164691264965}
   - {fileID: 343918177}
   - {fileID: 5737661804519077398}
+  - {fileID: 890824012}
   - {fileID: 139911684}
   - {fileID: 892387544}
   - {fileID: 1780345639}
