@@ -22,7 +22,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Transform endLevelPanel;
     [SerializeField] private TextMeshProUGUI winnerNameText;
     [SerializeField] private GameObject endLevelFx;
-    [SerializeField] private Transform[] fxPoints;
+    [SerializeField] private Transform fxPointsList;
+    private Transform[] fxPoints;
 
 
     [Header("Lumiere")]
@@ -41,6 +42,7 @@ public class LevelManager : MonoBehaviour
 
     public bool isNight;
     private bool isFirstDay;
+    private bool isInstantiating = false;
 
     public bool isLevelRunning = false;
     private bool Error => players.Count() > spawnPoints.Count();
@@ -82,9 +84,25 @@ public class LevelManager : MonoBehaviour
         lastPlayer = null;
         endLevelPanel.gameObject.SetActive(false);
 
-
         InstantiatePlayers();
         SetFirstDay();
+
+        //fx 
+        if (fxPointsList != null)
+        {
+            int childCount = fxPointsList.childCount; // Nombre d'enfants
+            fxPoints = new Transform[childCount]; // Initialiser le tableau
+
+            for (int i = 0; i < childCount; i++)
+            {
+                fxPoints[i] = fxPointsList.GetChild(i); // Ajouter chaque enfant
+            }
+        }
+        else
+        {
+            Debug.LogWarning("fxPointsList n'est pas assigné dans l'inspecteur !");
+        }
+        
     }
 
     private void InstantiatePlayers()
@@ -157,38 +175,35 @@ public class LevelManager : MonoBehaviour
     }
 
     private void CheckEndLevelFx()
+{
+    if (fxPoints.Length > 0 && !isLevelRunning && !isInstantiating)
     {
-        if (fxPoints.Count() > 0 && !isLevelRunning)
-        {
-            StartCoroutine(InstantiateEndLevelFx());
-        }
+        StartCoroutine(InstantiateEndLevelFx());
+    }
+}
+
+private IEnumerator InstantiateEndLevelFx()
+{
+    isInstantiating = true; // Empêche d'autres appels pendant l'exécution
+
+    int fxCount = 20; // Nombre total d'effets à instancier
+    float interval = 0.5f; // Intervalle entre chaque effet
+
+    for (int i = 0; i < fxCount; i++)
+    {
+        // Choisir un point aléatoire
+        int randomIndex = Random.Rand(0, fxPoints.Length -1);
+        Vector3 spawnPosition = fxPoints[randomIndex].position;
+
+        // Instancier l'effet
+        Instantiate(endLevelFx, spawnPosition, Quaternion.identity);
+
+        // Attendre avant de passer au suivant
+        yield return new WaitForSeconds(interval);
     }
 
-    private IEnumerator InstantiateEndLevelFx()
-    {
-        
-            Instantiate(endLevelFx, fxPoints[Random.Rand(0, fxPoints.Count() - 1)]);
-            yield return new WaitForSeconds(1);
-            Instantiate(endLevelFx, fxPoints[Random.Rand(0, fxPoints.Count() - 1)]);
-            yield return new WaitForSeconds(1);
-            Instantiate(endLevelFx, fxPoints[Random.Rand(0, fxPoints.Count() - 1)]);
-            yield return new WaitForSeconds(1);
-            Instantiate(endLevelFx, fxPoints[Random.Rand(0, fxPoints.Count() - 1)]);
-            yield return new WaitForSeconds(1);
-            Instantiate(endLevelFx, fxPoints[Random.Rand(0, fxPoints.Count() - 1)]);
-            yield return new WaitForSeconds(1);
-            Instantiate(endLevelFx, fxPoints[Random.Rand(0, fxPoints.Count() - 1)]);
-            yield return new WaitForSeconds(1);
-            Instantiate(endLevelFx, fxPoints[Random.Rand(0, fxPoints.Count() - 1)]);
-            yield return new WaitForSeconds(1);
-            Instantiate(endLevelFx, fxPoints[Random.Rand(0, fxPoints.Count() - 1)]);
-            yield return new WaitForSeconds(1);
-            Instantiate(endLevelFx, fxPoints[Random.Rand(0, fxPoints.Count() - 1)]);
-            yield return new WaitForSeconds(1);
-            Instantiate(endLevelFx, fxPoints[Random.Rand(0, fxPoints.Count() - 1)]);
-            yield return new WaitForSeconds(1);
-            Instantiate(endLevelFx, fxPoints[Random.Rand(0, fxPoints.Count() - 1)]);        
-    }
+    isInstantiating = false; // Fin de l'instantiation
+}
     public void LoadScene(string scene)
     {
         SceneManager.LoadScene(scene);
