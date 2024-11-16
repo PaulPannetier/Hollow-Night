@@ -77,7 +77,7 @@ public class EventManager : MonoBehaviour
 
         }
 
-        if (nbOfGame <= 0)
+        if (nextLevels.Count <= 0)
         {
             isGameEnd = true;
             LoadScene(rewardScene);

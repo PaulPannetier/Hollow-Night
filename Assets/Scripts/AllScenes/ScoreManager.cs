@@ -52,6 +52,18 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
+    public void AddKillToScore (PlayerID playerID)
+    {
+        foreach (ScoreData scoreData in scoreDatas)
+        {
+            if (scoreData.playerID == playerID)
+            {
+                scoreData.nbKill ++;
+                break;
+            }
+        }
+    }
+
     public void DisplayScorePanel()
     {
         currentScorePanel = Instantiate(ScoreCanva, transform);
@@ -100,7 +112,12 @@ public class ScoreManager : MonoBehaviour
 public class ScoreData
 {
     public PlayerID playerID;
+    public int nbKill;
     public int score;
+
+    public ScoreData()
+    {
+    }
 
     public ScoreData(PlayerID playerID, int score)
     {

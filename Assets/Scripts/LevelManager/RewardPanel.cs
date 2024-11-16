@@ -1,18 +1,28 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using System;
+using UnityEngine.SceneManagement;
 
 public class RewardPanel : MonoBehaviour
 {
+    [SerializeField] private string menuScene = "MenuScene";
+
+    [Header("UI")]
     [SerializeField] private Transform killerPanel;
-    [SerializeField] private TextMeshProUGUI killerPlayer;
-    [SerializeField] private Transform killerName; // to do 
+    [SerializeField] private TextMeshProUGUI killerText;
     [SerializeField] private Transform poulpePanel;
-    [SerializeField] private TextMeshProUGUI poulpePlayer;
+    [SerializeField] private TextMeshProUGUI poulpeText;
     [SerializeField] private Transform survivorPanel;
-    [SerializeField] private TextMeshProUGUI survivorPlayer;
+    [SerializeField] private TextMeshProUGUI survivorText;
     [SerializeField] private Transform PoissonGlobePanel;
-    [SerializeField] private TextMeshProUGUI poissonPlayer;
+    [SerializeField] private TextMeshProUGUI poissonText;
+
+    [Header("Recompense")]
+    [SerializeField] private PlayerID killerPlayer; // to do  
+    [SerializeField] private PlayerID survivorPlayer;
+    [SerializeField] private PlayerID poulpePlayer;
+    [SerializeField] private PlayerID poissonPlayer;
 
     [SerializeField] private List<ScoreData> scoreDatas = new List<ScoreData>();
 
@@ -26,11 +36,14 @@ public class RewardPanel : MonoBehaviour
     }
 
     private PanelState currentState = PanelState.None;
-
-    void Start()
+    private void Awake()
     {
         scoreDatas = ScoreManager.instance.scoreDatas;
-        SwitchPanel(PanelState.None);
+        SetReward();
+    }
+    void Start()
+    {
+        SwitchPanel(PanelState.Killer);
     }
 
     void Update()
@@ -40,6 +53,8 @@ public class RewardPanel : MonoBehaviour
             CyclePanels();
         }
     }
+
+
 
     private void CyclePanels()
     {
@@ -85,7 +100,7 @@ public class RewardPanel : MonoBehaviour
                 PoissonGlobePanel.gameObject.SetActive(true);
                 break;
             case PanelState.None:
-                // Aucun panneau actif
+                ResetGame();
                 break;
         }
     }
@@ -96,5 +111,74 @@ public class RewardPanel : MonoBehaviour
         poulpePanel.gameObject.SetActive(false);
         survivorPanel.gameObject.SetActive(false);
         PoissonGlobePanel.gameObject.SetActive(false);
+    }
+
+    private void SetReward()
+    {
+        killerPlayer = SetKiller();
+        survivorPlayer = SetSurvivor();
+        poulpePlayer = SetPoulpe();
+        poissonPlayer = SetPoisson();
+
+        DisplayReward();
+    }
+
+    PlayerID SetKiller()
+    {
+        int hightestKill = -1;
+        ScoreData currentKiller = new ScoreData(PlayerID.Player1, 0);
+
+        foreach (ScoreData score in scoreDatas)
+        {
+            if (score.nbKill > hightestKill)
+            {
+                hightestKill = score.nbKill;
+                currentKiller = score;
+            }
+        }
+
+        scoreDatas.Remove(currentKiller);
+        return currentKiller.playerID;
+    }
+
+    PlayerID SetSurvivor()
+    {
+        int hightestScore = -1;
+        ScoreData currentSurvivor = new ScoreData(PlayerID.Player1, 0);
+        foreach (ScoreData score in scoreDatas)
+        {
+            if (score.score > hightestScore)
+            {
+                hightestScore = score.score;
+                currentSurvivor = score;
+            }
+        }
+        scoreDatas.Remove(currentSurvivor);
+        return currentSurvivor.playerID;
+    }
+
+    PlayerID SetPoulpe()
+    {
+        return scoreDatas[Random.Rand(0, 1)].playerID;
+    }
+
+    PlayerID SetPoisson()
+    {
+        return scoreDatas[0].playerID;
+    }
+
+    void DisplayReward()
+    {
+        killerText.text = killerPlayer.ToString();
+        survivorText.text = survivorPlayer.ToString();
+        poulpeText.text = poulpePlayer.ToString();
+        poissonText.text = poissonPlayer.ToString();
+    }
+    void ResetGame()
+    {
+        EventManager.instance = null;
+        ScoreManager.instance = null;
+
+        SceneManager.LoadScene(menuScene);
     }
 }

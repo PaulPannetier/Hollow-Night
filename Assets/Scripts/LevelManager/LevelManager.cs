@@ -177,6 +177,7 @@ public class LevelManager : MonoBehaviour
         }
 
         killer.nbKill++;
+        ScoreManager.instance.AddKillToScore(killer.playerID);
     }
 
     #region Fx
